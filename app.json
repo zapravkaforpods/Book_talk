@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Book Talk",
+    "slug": "Book Talk",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/Main/logo.svg",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/Main/logo.svg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Main/logo.svg",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/Main/logo.svg"
+    }
+  }
+}
