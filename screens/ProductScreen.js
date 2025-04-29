@@ -74,34 +74,33 @@ const ProductScreen = () => {
           <Text style={styles.readingNowTitle}>Читаю зараз</Text>
         </View>
 
-        {/* Секція з обговореннями, чернетками та лайкнутими */}
         <ScrollView horizontal style={styles.categories}>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'discussions' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('discussions')}
           >
-            <Property fill='white' />
+            <Property style={styles.categoryIcon}  stroke={activeCategory === 'discussions' ? 'white' : 'black'} />
             <Text style={[styles.categoryText, activeCategory === 'discussions' && styles.activeCategoryText]}>Обговорення</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'drafts' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('drafts')}
           >
-            <Correct style={styles.categoryIcon} fill={activeCategory === 'drafts' ? '#fff' : '#333'} />
+            <Correct style={styles.categoryIcon}  stroke={activeCategory === 'drafts' ? 'white' : 'black'} />
             <Text style={[styles.categoryText, activeCategory === 'drafts' && styles.activeCategoryText]}>Чернетки</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'liked' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('liked')}
           >
-            <Like style={styles.categoryIcon} fill={activeCategory === 'liked' ? '#fff' : '#333'} />
+            <Like style={styles.categoryIcon}  stroke={activeCategory === 'liked' ? 'white' : 'black'} />
             <Text style={[styles.categoryText, activeCategory === 'liked' && styles.activeCategoryText]}>Лайкнуті</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'reposts' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('reposts')}
           >
-            <Repost style={styles.categoryIcon} fill={activeCategory === 'reposts' ? '#fff' : '#333'} />
+            <Repost style={styles.categoryIcon}  stroke={activeCategory === 'reposts' ? 'red' : 'black'} />
             <Text style={[styles.categoryText, activeCategory === 'reposts' && styles.activeCategoryText]}>Репости</Text>
           </TouchableOpacity>
         </ScrollView>
@@ -125,7 +124,7 @@ const ProductScreen = () => {
             </View>
             <View style={styles.likesContainer}>
               <TouchableOpacity style={styles.likeButton} onPress={() => console.log('Лайкнути')}>
-                <Menu width={24} height={24} fill="blue" />
+                <Menu width={24} height={24} fill="black" />
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
