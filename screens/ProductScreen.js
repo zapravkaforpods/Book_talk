@@ -79,28 +79,28 @@ const ProductScreen = () => {
             style={[styles.categoryButton, activeCategory === 'discussions' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('discussions')}
           >
-            <Property style={styles.categoryIcon}  stroke={activeCategory === 'discussions' ? 'white' : 'black'} />
+            <Property style={styles.categoryIcon}  stroke={activeCategory === 'discussions' ? 'white' : 'black'}  strokeWidth={0.5} />
             <Text style={[styles.categoryText, activeCategory === 'discussions' && styles.activeCategoryText]}>Обговорення</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'drafts' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('drafts')}
           >
-            <Correct style={styles.categoryIcon}  stroke={activeCategory === 'drafts' ? 'white' : 'black'} />
+            <Correct style={styles.categoryIcon}  stroke={activeCategory === 'drafts' ? 'white' : 'black'} strokeWidth={0.5} />
             <Text style={[styles.categoryText, activeCategory === 'drafts' && styles.activeCategoryText]}>Чернетки</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'liked' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('liked')}
           >
-            <Like style={styles.categoryIcon}  stroke={activeCategory === 'liked' ? 'white' : 'black'} />
+            <Like style={styles.categoryIcon}  stroke={activeCategory === 'liked' ? 'white' : 'black'}  strokeWidth={0.5} />
             <Text style={[styles.categoryText, activeCategory === 'liked' && styles.activeCategoryText]}>Лайкнуті</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.categoryButton, activeCategory === 'reposts' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('reposts')}
           >
-            <Repost style={styles.categoryIcon}  stroke={activeCategory === 'reposts' ? 'red' : 'black'} />
+            <Repost style={styles.categoryIcon}  stroke={activeCategory === 'reposts' ? 'red' : 'black'}  strokeWidth={0.5} />
             <Text style={[styles.categoryText, activeCategory === 'reposts' && styles.activeCategoryText]}>Репости</Text>
           </TouchableOpacity>
         </ScrollView>

@@ -8,11 +8,10 @@ import {
   ScrollView,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native'; // Імпортуємо хук useNavigation
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const NotificationItem = ({
-     
   profileImageSource,
   byUser,
   timeAgo,
@@ -53,7 +52,7 @@ const NotificationScreen = () => {
       </View>
 
       {/* Список сповіщень */}
-      <ScrollView >
+      <ScrollView>
         <NotificationItem
           profileImageSource={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
           byUser="Castiel Da'Neer"
@@ -95,12 +94,12 @@ const NotificationScreen = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1, 
-    backgroundColor: '#F1EFE4', 
+    flex: 1,
+    backgroundColor: '#F1EFE4',
   },
   container: {
     flex: 1,
-    backgroundColor: '#F1EFE4', 
+    backgroundColor: '#F1EFE4',
   },
   topBar: {
     flexDirection: 'row',
@@ -118,14 +117,14 @@ const styles = StyleSheet.create({
     borderRadius: 555,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16, 
+    marginRight: 16,
   },
   title: {
     flex: 1,
     fontSize: 18,
-    fontWeight: 'bold',
     textAlign: 'center',
     right: 20,
+    fontFamily: 'Bitter-Medium', 
   },
   notificationItem: {
     flexDirection: 'row',
@@ -147,18 +146,21 @@ const styles = StyleSheet.create({
   byUserText: {
     fontSize: 14,
     color: '#555',
+    fontFamily: 'Bitter', 
   },
   boldText: {
     fontWeight: 'bold',
     color: '#333',
+    fontFamily: 'Bitter', 
   },
   notificationText: {
     fontSize: 16,
     color: '#333',
     marginTop: 4,
+    fontFamily: 'Bitter', 
   },
   actionButton: {
-    backgroundColor: '#E0DAC2', 
+    backgroundColor: '#E0DAC2',
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -168,6 +170,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontSize: 14,
+    fontFamily: 'Bitter', 
   },
 });
 

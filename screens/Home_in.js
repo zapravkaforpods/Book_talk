@@ -55,24 +55,27 @@ const ImageScreen = () => {
   const handleViewAllTopDiscussionsPress = () => {
     navigation.navigate('TopDiscussions');
   };
-
-  return (
-    <SafeAreaView style={styles.safeArea}>
-    <View style={styles.container}>
-      <ScrollView style={styles.content}>
-        {/* Верхня частина екрана */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Product')}>
-            <Image source={require('../assets/Main/my photo.jpg')} style={styles.userPhoto} />
-            <View style={styles.userInfo}>
-              <Text style={styles.helloText}>Helo, Nata! </Text>
-              <Text style={styles.questionText}>Про що поговоримо сьогодні?</Text>
-            </View>
-          </TouchableOpacity>
-          <View style={styles.icons}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Notification')}>
-              <Headphones style={styles.backButtonText} />
-            </TouchableOpacity>
+    const navigateToFeedback = () => {
+        navigation.navigate('Feedback'); // Перехід на екран Feedback
+      };
+    
+      return (
+        <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <ScrollView style={styles.content}>
+            {/* Верхня частина екрана */}
+            <View style={styles.header}>
+              <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Product')}>
+                <Image source={require('../assets/Main/my photo.jpg')} style={styles.userPhoto} />
+                <View style={styles.userInfo}>
+                  <Text style={styles.helloText}>Helo, Nata! </Text>
+                  <Text style={styles.questionText}>Про що поговоримо сьогодні?</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={styles.icons}>
+              <TouchableOpacity style={styles.backButton} onPress={navigateToFeedback}> {/* Змінено onPress */}
+                  <Headphones style={styles.backButtonText} />
+                </TouchableOpacity>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Notification')}>
               <Bell style={styles.backButtonText} />
             </TouchableOpacity>
