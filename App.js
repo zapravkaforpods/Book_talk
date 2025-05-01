@@ -11,7 +11,7 @@ import ImageScreen from './screens/Home_in';
 import ProductScreen from './screens/ProductScreen';
 import Search from './screens/search.js';
 import NotificationScreen from './screens/NoficationItem.js';
-import FeedbackScreen from '../Book_Talk/screens/Feedback.js';
+import FeedbackScreen from './screens/Feedback.js';
 import * as Font from 'expo-font';
 
 const Stack = createStackNavigator();

@@ -16,12 +16,12 @@ const { width, height } = Dimensions.get('window');
 const ImageScreen = () => {
   const navigation = useNavigation();
   const [searchText, setSearchText] = useState('');
-  const [genreScreenVisible, setGenreScreenVisible] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null); // Додано стан activeCategory
 
   const handleGenrePress = (genre) => {
+    setActiveCategory(genre); // Оновлено стан при натисканні
     console.log(`Обрано жанр: ${genre}`);
     navigation.navigate('GenreList', { genre: genre });
-    setGenreScreenVisible(false);
   };
 
   const handleAllPress = () => {
@@ -58,7 +58,9 @@ const ImageScreen = () => {
     const navigateToFeedback = () => {
         navigation.navigate('Feedback'); // Перехід на екран Feedback
       };
-    
+
+    const categories = ['Всі', 'Фентезі', 'Детектив', 'Роман', 'Псих'];
+
       return (
         <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
@@ -100,21 +102,25 @@ const ImageScreen = () => {
 
         {/* Категорії */}
         <ScrollView horizontal style={styles.categories}>
-          <TouchableOpacity style={styles.categoryButton} onPress={handleAllPress}>
-            <Text style={styles.categoryText}>Всі</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton} onPress={handleFantasyPress}>
-            <Text style={styles.categoryText}>Фентезі</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton} onPress={handleDetectivePress}>
-            <Text style={styles.categoryText}>Детектив</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton} onPress={handleRomancePress}>
-            <Text style={styles.categoryText}>Роман</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton} onPress={handlePsychPress}>
-            <Text style={styles.categoryText}>Псих</Text>
-          </TouchableOpacity>
+          {categories.map((category) => (
+            <TouchableOpacity
+              key={category}
+              style={[
+                styles.categoryButton,
+                activeCategory === category && styles.activeCategoryButton,
+              ]}
+              onPress={() => handleGenrePress(category)}
+            >
+              <Text
+                style={[
+                  styles.categoryText,
+                  activeCategory === category && styles.activeCategoryText,
+                ]}
+              >
+                {category}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </ScrollView>
 
         {/* Що зараз читають */}
@@ -321,6 +327,12 @@ const styles = StyleSheet.create({
     fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
     color: '#333',
     fontFamily: 'Bitter', // Додано шрифт
+  },
+  activeCategoryButton: {
+    backgroundColor: '#000',
+  },
+  activeCategoryText: {
+    color: '#fff',
   },
   section: {
     flexDirection: 'row',

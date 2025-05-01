@@ -21,16 +21,33 @@ const SearchScreen = () => {
   const [searchText, setSearchText] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const handleBackPress = () => {
-    navigation.goBack();
-  };
+const handleGenrePress = (genre) => {
+    setActiveCategory(genre); // Оновлено стан при натисканні
+    console.log(`Обрано жанр: ${genre}`);
+    navigation.navigate('GenreList', { genre: genre });
+  };
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
 
-  const handleCategoryPress = (category) => {
-    setActiveCategory(category === activeCategory ? null : category); // Зняття вибору, якщо натиснуто ту саму кнопку
-    console.log(`Обрано категорію: ${category}`);
-  };
 
-  const categoriesData = ['Всі', 'Фентезі', 'Детектив','Роман','Псих']; // Додайте свої категорії
+const handleViewAllReadingPress = () => {
+    navigation.navigate('ReadingList');
+  };
+
+  const handleViewAllDiscussionTypesPress = () => {
+    navigation.navigate('DiscussionTypes');
+  };
+
+  const handleViewAllTopDiscussionsPress = () => {
+    navigation.navigate('TopDiscussions');
+  };
+    const navigateToFeedback = () => {
+        navigation.navigate('Feedback'); // Перехід на екран Feedback
+      };
+
+    const categories = ['Всі', 'Фентезі', 'Детектив', 'Роман', 'Псих'];
+  
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -54,29 +71,29 @@ const SearchScreen = () => {
             />
           </View>
         </View>
-        {/* Категорії */}
-        <ScrollView horizontal style={[styles.categories, { marginBottom: 20 }]}>
-          {categoriesData.map((category) => (
-            <TouchableOpacity
-              key={category}
-              style={[
-                styles.categoryButton,
-                activeCategory === category && styles.activeCategoryButton,
-              ]}
-              onPress={() => handleCategoryPress(category)}
-            >
-              <Text
-                style={[
-                  styles.categoryText,
-                  activeCategory === category && styles.activeCategoryText,
-                ]}
-              >
-                {category}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-
+             {/* Категорії */}
+                    <ScrollView horizontal style={styles.categories}>
+                      {categories.map((category) => (
+                        <TouchableOpacity
+                          key={category}
+                          style={[
+                            styles.categoryButton,
+                            activeCategory === category && styles.activeCategoryButton,
+                          ]}
+                          onPress={() => handleGenrePress(category)}
+                        >
+                          <Text
+                            style={[
+                              styles.categoryText,
+                              activeCategory === category && styles.activeCategoryText,
+                            ]}
+                          >
+                            {category}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </ScrollView>
+        
         {/* Історія пошуку */}<Text style={styles.historyTitle}>Історія пошуку</Text>
 {Array.from({ length: 15 }).map((_, index) => (
         <View style={styles.historyContainer}>
@@ -136,6 +153,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 16,
   },
+activeCategoryButton: {
+    backgroundColor: '#000',
+  },
+  activeCategoryText: {
+    color: '#fff',
+  },
   searchBar: {
     flex: 1,
     flexDirection: 'row',
@@ -155,32 +178,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0DAC2',
     marginLeft: width * 0.03,
   },
-  categories: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    marginTop: 10,
-  },
-  categoryButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center', // Додано для центрування тексту
-    backgroundColor: '#E0DAC2', // Початковий колір кнопки - білий
-    borderRadius: width * 0.5,
-    marginRight: width * 0.02,
-    height: height * 0.05,
-
-  },
-  activeCategoryButton: {
-    backgroundColor: '#000000', // Колір кнопки при натисканні - чорний
-  },
-  categoryText: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
-    color: 'black', // Початковий колір тексту - чорний
-    fontFamily: 'Bitter',
-  },
-  activeCategoryText: {
-    color: '#FFFFFF', // Колір тексту при натисканні - білий
-  },
+   categories: {
+    marginTop: 10,
+    marginBottom: height * 0.01,
+  },
+  categoryButton: {
+    backgroundColor: '#E0DAC2',
+    borderRadius: width * 0.05,
+    paddingVertical: height * 0.01,
+    paddingHorizontal: width * 0.03,
+    marginRight: width * 0.02,
+  },
+  categoryText: {
+    fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
+    color: '#333',
+    fontFamily: 'Bitter', // Додано шрифт
+  },
+  activeCategoryButton: {
+    backgroundColor: '#000',
+  },
+  activeCategoryText: {
+    color: '#fff',
+  },
   historyContainer: {
     paddingHorizontal: 16,
 backgroundColor: '#F1EFE4',
