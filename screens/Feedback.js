@@ -33,11 +33,12 @@ const FeedbackScreen = () => {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         {/* Кнопка "Назад" */}
+        <View>
         <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
           <Feather name="arrow-left" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.title}>Зворотній зв'язок</Text>
-
+        </View>
         {/* Логотип */}
         <View style={styles.logoContainer}>
           <MyIcon width={100} height={100} />
@@ -94,7 +95,6 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1, // Дозволяє ScrollView розширюватися за вмістом
     paddingHorizontal: 20,
-    paddingVertical:40, // Горизонтальний педінг для всіх пристроїв
     paddingBottom: 20, // Додаємо трохи нижнього педінгу, якщо вміст прокручується
   },
   logoContainer: {
