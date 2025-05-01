@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flexGrow: 1, // Дозволяє ScrollView розширюватися за вмістом
-    paddingHorizontal: 20, // Горизонтальний педінг для всіх пристроїв
+    paddingHorizontal: 20,
+    paddingVertical:40, // Горизонтальний педінг для всіх пристроїв
     paddingBottom: 20, // Додаємо трохи нижнього педінгу, якщо вміст прокручується
   },
   logoContainer: {

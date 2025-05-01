@@ -72,28 +72,29 @@ const SearchScreen = () => {
             />
           </View>
         </View>
-        {/* Категорії */}
-        <ScrollView horizontal style={styles.categories}>
-          {categories.map((category) => (
-            <TouchableOpacity
-              key={category}
-              style={[
-                styles.categoryButton,
-                activeCategory === category && styles.activeCategoryButton,
-              ]}
-              onPress={() => handleGenrePress(category)}
-            >
-              <Text
-                style={[
-                  styles.categoryText,
-                  activeCategory === category && styles.activeCategoryText,
-                ]}
-              >
-                {category}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+       
+                 {/* Категорії */}
+                 <ScrollView horizontal style={styles.categories}>
+                   {categories.map((category) => (
+                     <TouchableOpacity
+                       key={category}
+                       style={[
+                         styles.categoryButton,
+                         activeCategory === category && styles.activeCategoryButton,
+                       ]}
+                       onPress={() => handleGenrePress(category)}
+                     >
+                       <Text
+                         style={[
+                           styles.categoryText,
+                           activeCategory === category && styles.activeCategoryText,
+                         ]}
+                       >
+                         {category}
+                       </Text>
+                     </TouchableOpacity>
+                   ))}
+                 </ScrollView>
 
         {/* Історія пошуку */}<Text style={styles.historyTitle}>Історія пошуку</Text>
         {Array.from({ length: 3 }).map((_, index) => (
@@ -180,12 +181,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 16,
   },
-  activeCategoryButton: {
-    backgroundColor: '#000',
-  },
-  activeCategoryText: {
-    color: '#fff',
-  },
+  categoryButton: {
+        backgroundColor: '#E0DAC2',
+        borderRadius: width * 0.05,
+        paddingVertical: height * 0.01,
+        paddingHorizontal: width * 0.03,
+        marginRight: width * 0.02,
+      },
+      categoryText: {
+        fontSize: 14,
+        color: '#333',
+        fontFamily: 'Albra-Medium',
+      },
+      activeCategoryButton: {
+        backgroundColor: '#000',
+      },
+      activeCategoryText: {
+        color: '#fff',
+        fontFamily: 'Bitter',
+      },
   searchBar: {
     flex: 1,
     flexDirection: 'row',
@@ -209,25 +223,26 @@ const styles = StyleSheet.create({
   categories: {
     marginTop: 10,
     marginBottom: height * 0.01,
+    paddingHorizontal: 20,
   },
-  categoryButton: {
-    backgroundColor: '#E0DAC2',
-    borderRadius: width * 0.05,
-    paddingVertical: height * 0.01,
-    paddingHorizontal: width * 0.03,
-    marginRight: width * 0.02,
-  },
-  categoryText: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
-    color: '#333',
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  activeCategoryButton: {
-    backgroundColor: '#000',
-  },
-  activeCategoryText: {
-    color: '#fff',
-  },
+  // categoryButton: {
+  //   backgroundColor: '#E0DAC2',
+  //   borderRadius: width * 0.05,
+  //   paddingVertical: height * 0.01,
+  //   paddingHorizontal: width * 0.03,
+  //   marginRight: width * 0.02,
+  // },
+  // categoryText: {
+  //   fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
+  //   color: '#333',
+  //   fontFamily: 'Bitter', // Додано шрифт
+  // },
+  // activeCategoryButton: {
+  //   backgroundColor: '#000',
+  // },
+  // activeCategoryText: {
+  //   color: '#fff',
+  // },
   historyContainer: {
     paddingHorizontal: 16,
     backgroundColor: '#F1EFE4',

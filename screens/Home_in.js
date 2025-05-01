@@ -52,26 +52,6 @@ const ImageScreen = () => {
     // navigation.navigate('GenreList', { genre: genre }); // Закоментуйте або видаліть, якщо не потрібен перехід
   };
 
-  const handleAllPress = () => {
-    handleGenrePress('Всі');
-  };
-
-  const handleFantasyPress = () => {
-    handleGenrePress('Фентезі');
-  };
-
-  const handleDetectivePress = () => {
-    handleGenrePress('Детектив');
-  };
-
-  const handleRomancePress = () => {
-    handleGenrePress('Роман');
-  };
-
-  const handlePsychPress = () => {
-    handleGenrePress('Псих');
-  };
-
   const handleViewAllReadingPress = () => {
     navigation.navigate('ReadingList', { books: displayedBooks, category: activeCategory }); // Передаємо відфільтровані книги
   };
@@ -231,11 +211,11 @@ const ImageScreen = () => {
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
               <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 101 })}>
-                <Image source={require('../assets/Home/book.png')} style={styles.bookCover} />
+                <Image source={require('../assets/Home/book4.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Обговорення 1</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 102 })}>
-                <Image source={require('../assets/Home/book2.png')} style={styles.bookCover} />
+                <Image source={require('../assets/Home/book4.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Обговорення 2</Text>
               </TouchableOpacity>
             </View>
@@ -270,186 +250,186 @@ const ImageScreen = () => {
     );
 };
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F1EFE4',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#F1EFE4',
-  },
-  content: {
-    flex: 1,
-    padding: width * 0.03,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: height * 0.08,
-    marginTop: height * 0.01,
-  },
-  userSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  userPhoto: {
-    width: width * 0.12,
-    height: width * 0.12,
-    borderRadius: width * 0.06,
-    marginRight: width * 0.02,
-  },
-  userInfo: {
-    flex: 1,
-  },
-  backButton: {
-    width: width * 0.12,
-    height: width * 0.12,
-    backgroundColor: '#E0DAC2',
-    borderRadius: width * 0.06,
-    marginLeft: width * 0.02,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  helloText: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.05),
-    fontWeight: 'light',
-    color: '#888272',
-    fontFamily: 'Bitter-Light', // Додано шрифт
-  },
-  questionText: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.04),
-    color: 'black',
-    fontFamily: 'Bitter-Regular', // Додано шрифт
-  },
-  icons: {
-    flexDirection: 'row',
-  },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#E0DAC2',
-    borderRadius: width * 0.06,
-    paddingHorizontal: width * 0.04,
-    height: height * 0.06,
-    top: -50,
-  },
-  searchText: {
-    flex: 1,
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.04),
-    color: 'black',
-    backgroundColor: '#E0DAC2',
-    marginLeft: width * 0.02,
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  categories: {
-    top: -25,
-    marginBottom: height * 0.01,
-  },
-  categoryButton: {
-    backgroundColor: '#E0DAC2',
-    borderRadius: width * 0.05,
-    paddingVertical: height * 0.01,
-    paddingHorizontal: width * 0.03,
-    marginRight: width * 0.02,
-  },
-  categoryText: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
-    color: '#333',
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  activeCategoryButton: {
-    backgroundColor: '#000',
-  },
-  activeCategoryText: {
-    color: '#fff',
-  },
-  section: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: height * 0.01,
-  },
-  sectionTitle: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.045),
-    fontWeight: 'bold',
-    color: '#333',
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  viewAllButton: {
-    padding: width * 0.01,
-  },
-  viewAllText: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
-    color: '#007AFF',
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  booksContainer: {
-    alignItems: 'center',
-    marginBottom: height * 0.02,
-  },
-  bookRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginBottom: height * 0.02,
-  },
-  book: {
-    alignItems: 'center',
-  },
-  bookCover: {
-    width: width * 0.35,
-    height: height * 0.25,
-    borderRadius: width * 0.025,
-    marginBottom: height * 0.01,
-  },
-  bookTitle: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.04),
-    fontWeight: 'bold',
-    color: '#333',
-    marginTop: height * 0.01,
-    width: width * 0.4,
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  bookAuthor: {
-    fontSize: PixelRatio.roundToNearestPixel(width * 0.035),
-    color: '#666',
-    textAlign: 'center',
-    fontFamily: 'Bitter', // Додано шрифт
-  },
-  navigationBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#000',
-    height: height * 0.1,
-    width: width * 0.9,
-    borderRadius: width * 0.1,
-    position: 'absolute',
-    bottom: height * 0.02,
-    left: width * 0.05,
-  },
-  navItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width * 0.1,
-    height: width * 0.1,
-  },
-  navIcon: {
-    width: width * 0.06,
-    height: width * 0.06,
-    resizeMode: 'contain',
-  },
-  activenavIcon:{
-    position: 'absolute',
-    bottom: -15, // Розмістіть під іконкою
-    borderRadius:50,
-    left: 7,
-    right: 0,
-    height: 5,
-    width: 43,
-    backgroundColor: '#E04D53',  },
-});
-
-export default ImageScreen;
+    safeArea: {
+      flex: 1,
+      backgroundColor: '#F1EFE4',
+    },
+    container: {
+      flex: 1,
+      backgroundColor: '#F1EFE4',
+    },
+    content: {
+      flex: 1,
+      padding: width * 0.03,
+    },
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: height * 0.08,
+      marginTop: height * 0.01,
+    },
+    userSection: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      flex: 1,
+    },
+    userPhoto: {
+      width: width * 0.12,
+      height: width * 0.12,
+      borderRadius: width * 0.06,
+      marginRight: width * 0.02,
+    },
+    userInfo: {
+      flex: 1,
+    },
+    backButton: {
+      width: width * 0.12,
+      height: width * 0.12,
+      backgroundColor: '#E0DAC2',
+      borderRadius: width * 0.06,
+      marginLeft: width * 0.02,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    helloText: {
+      fontSize: PixelRatio.roundToNearestPixel(width * 0.05),
+      fontWeight: 'light',
+      color: '#888272',
+      fontFamily: 'Bitter-Light',
+    },
+    questionText: {
+      fontSize: PixelRatio.roundToNearestPixel(width * 0.04),
+      color: 'black',
+      fontFamily: 'Bitter-Regular',
+    },
+    icons: {
+      flexDirection: 'row',
+    },
+    searchBar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#E0DAC2',
+      borderRadius: width * 0.06,
+      paddingHorizontal: width * 0.04,
+      height: height * 0.06,
+      top: -50,
+    },
+    searchText: {
+      flex: 1,
+      fontSize: PixelRatio.roundToNearestPixel(width * 0.04),
+      color: 'black',
+      backgroundColor: '#E0DAC2',
+      marginLeft: width * 0.02,
+      fontFamily: 'Bitter',
+    },
+    categories: {
+      top: -25,
+      marginBottom: height * 0.01,
+    },
+    categoryButton: {
+      backgroundColor: '#E0DAC2',
+      borderRadius: width * 0.05,
+      paddingVertical: height * 0.01,
+      paddingHorizontal: width * 0.03,
+      marginRight: width * 0.02,
+    },
+    categoryText: {
+      fontSize: 14,
+      color: '#333',
+      fontFamily: 'Albra-Medium',
+    },
+    activeCategoryButton: {
+      backgroundColor: '#000',
+    },
+    activeCategoryText: {
+      color: '#fff',
+      fontFamily: 'Bitter',
+    },
+    section: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: height * 0.01,
+    },
+    sectionTitle: {
+      fontSize: 19,
+      color: '#333',
+      fontFamily: 'Bitter-Medium',
+    },
+    viewAllButton: {
+      padding: width * 0.01,
+    },
+    viewAllText: {
+      fontSize: 15,
+      color: '#E04D53',
+      fontFamily: 'Albra-Medium',
+    },
+    booksContainer: {
+      alignItems: 'center',
+      marginBottom: height * 0.02,
+    },
+    bookRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      width: '100%',
+      marginBottom: 16,
+    },
+    book: {
+      alignItems: 'center',
+    },
+    bookCover: {
+      width: 169,
+      height: 248,
+      borderRadius: width * 0.025,
+      marginBottom: height * 0.01,
+    },
+    bookTitle: {
+      fontSize: 16,
+      color: '#333',
+      width: width * 0.4,
+      textAlign: 'center',
+      fontFamily: 'Bitter-Bold',
+    },
+    bookAuthor: {
+      fontSize: 12,
+      color: '#666',
+      textAlign: 'center',
+      fontFamily: 'Bitter-Regular',
+    },
+    navigationBar: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      backgroundColor: '#000',
+      height: height * 0.1,
+      width: width * 0.9,
+      borderRadius: width * 0.1,
+      position: 'absolute',
+      bottom: height * 0.02,
+      left: width * 0.05,
+    },
+    navItem: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: width * 0.1,
+      height: width * 0.1,
+    },
+    navIcon: {
+      width: width * 0.06,
+      height: width * 0.06,
+      resizeMode: 'contain',
+    },
+    activenavIcon:{
+      position: 'absolute',
+      bottom: -15,
+      borderRadius:50,
+      left: 7,
+      right: 0,
+      height: 5,
+      width: 43,
+      backgroundColor: '#E04D53',
+    },
+  });
+  
+  export default ImageScreen;
