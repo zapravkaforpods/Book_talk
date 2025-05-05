@@ -33,12 +33,11 @@ const App = () => {
           'Bitter-Bold': require('./assets/Font/static/Bitter-Bold.ttf'), 
           'Bitter-Light': require('./assets/Font/static/Bitter-Light.ttf'),
           'Bitter-Medium': require('./assets/Font/static/Bitter-Medium.ttf'),
-<<<<<<< HEAD
+
           'Albra-Medium ': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Medium.otf'),
           'Albra-Regular': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Regular.otf'),
-=======
+
           'Albra-Medium': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Medium.otf')
->>>>>>> 607eaccec204071919d997840cf1329735c4c7fb
         });
       } catch (error) {
         console.error('Помилка завантаження шрифтів', error);
@@ -68,11 +67,8 @@ const App = () => {
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name='Notification' component={NotificationScreen} />
           <Stack.Screen name='Feedback' component={FeedbackScreen} />
-<<<<<<< HEAD
           <Stack.Screen name='Book_details' component={Book_details} />
-=======
-          <Stack.Screen name='Book_det' component={Book_details} />
->>>>>>> 607eaccec204071919d997840cf1329735c4c7fb
+
         </Stack.Navigator>
       </NavigationContainer>
     </View>
