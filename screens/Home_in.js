@@ -228,7 +228,7 @@ const ImageScreen = () => {
             <Home style={styles.navIcon}/>
             {activeTab === 'Home' && <View style={styles.activenavIcon} />}
           </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Discover'); setActiveTab('Discover'); }}>
+          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}> 
             <List style={styles.navIcon} />
             {activeTab === 'Discover' && <View style={styles.activenavIcon} />}
           </TouchableOpacity>

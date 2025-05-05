@@ -12,6 +12,7 @@ import ProductScreen from './screens/ProductScreen';
 import Search from './screens/search.js';
 import NotificationScreen from './screens/NoficationItem.js';
 import FeedbackScreen from './screens/Feedback.js';
+import Book_details from './screens/Book_details.js';
 import * as Font from 'expo-font';
 
 const Stack = createStackNavigator();
@@ -32,7 +33,8 @@ const App = () => {
           'Bitter-Bold': require('./assets/Font/static/Bitter-Bold.ttf'), 
           'Bitter-Light': require('./assets/Font/static/Bitter-Light.ttf'),
           'Bitter-Medium': require('./assets/Font/static/Bitter-Medium.ttf'),
-          'Albra-Medium ': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Medium.otf')
+          'Albra-Medium ': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Medium.otf'),
+          'Albra-Regular': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Regular.otf'),
         });
       } catch (error) {
         console.error('Помилка завантаження шрифтів', error);
@@ -62,6 +64,7 @@ const App = () => {
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name='Notification' component={NotificationScreen} />
           <Stack.Screen name='Feedback' component={FeedbackScreen} />
+          <Stack.Screen name='Book_details' component={Book_details} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
