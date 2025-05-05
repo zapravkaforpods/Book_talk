@@ -66,6 +66,9 @@ const ImageScreen = () => {
     const navigateToFeedback = () => {
       navigation.navigate('Feedback');
     };
+    const navigateToBook_details = () => {
+      navigation.navigate('Book_det');
+    };
 
     const categories = ['Всі', 'Фентезі', 'Детектив', 'Роман', 'Псих'];
 
@@ -75,7 +78,7 @@ const ImageScreen = () => {
           <ScrollView style={styles.content}>
             {/* Верхня частина екрана */}
             <View style={styles.header}>
-              <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Product')}>
+              <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Book_det')}>
                 <Image source={require('../assets/Main/my photo.jpg')} style={styles.userPhoto} />
                 <View style={styles.userInfo}>
                   <Text style={styles.helloText}>Helo, Nata! </Text>
@@ -423,8 +426,8 @@ const styles = StyleSheet.create({
     activenavIcon:{
       position: 'absolute',
       bottom: -15,
-      borderRadius:50,
-      left: 7,
+      borderRadius: 50,
+      left: 0,
       right: 0,
       height: 5,
       width: 43,

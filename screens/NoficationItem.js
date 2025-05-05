@@ -53,7 +53,7 @@ const NotificationScreen = () => {
 
       {/* Список сповіщень */}
       <ScrollView>
-        <NotificationItem
+        <NotificationItem 
           profileImageSource={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
           byUser="Castiel Da'Neer"
           timeAgo="5 хв"
@@ -160,18 +160,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Bitter', 
   },
   actionButton: {
-    backgroundColor: '#E0DAC2',
-    borderRadius: 8,
+    backgroundColor: '#191815',
+    borderRadius: 555,
     paddingVertical: 8,
     paddingHorizontal: 12,
     marginLeft: 12,
+    fontFamily: 'Albra-Medium',
   },
   actionButtonText: {
-    color: 'black',
-    fontWeight: 'bold',
+    color: '#FDFDFC',
     fontSize: 14,
-    fontFamily: 'Bitter', 
-  },
+    fontFamily: 'Albra-Medium',
+    },
 });
 
 export default NotificationScreen;

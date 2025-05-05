@@ -1,10 +1,11 @@
+
 {
   "expo": {
     "name": "Book Talk",
     "slug": "Book Talk",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Home/book.png",
+    "icon": "./assets/Home/book3.svg",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
