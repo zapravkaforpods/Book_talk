@@ -66,9 +66,7 @@ const ImageScreen = () => {
     const navigateToFeedback = () => {
       navigation.navigate('Feedback');
     };
-    const navigateToBook_details = () => {
-      navigation.navigate('Book_det');
-    };
+   
 
     const categories = ['Всі', 'Фентезі', 'Детектив', 'Роман', 'Псих'];
 
@@ -78,7 +76,7 @@ const ImageScreen = () => {
           <ScrollView style={styles.content}>
             {/* Верхня частина екрана */}
             <View style={styles.header}>
-              <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Book_det')}>
+              <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Product')}>
                 <Image source={require('../assets/Main/my photo.jpg')} style={styles.userPhoto} />
                 <View style={styles.userInfo}>
                   <Text style={styles.helloText}>Helo, Nata! </Text>
@@ -134,7 +132,7 @@ const ImageScreen = () => {
             ))}
           </ScrollView>
 
-          {/* Що зараз читають */}
+         
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Що зараз читають</Text>
             <TouchableOpacity style={styles.viewAllButton} onPress={handleViewAllReadingPress}>
@@ -142,7 +140,7 @@ const ImageScreen = () => {
             </TouchableOpacity>
           </View>
 
-          {/* Книги */}
+         
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
               {displayedBooks.slice(0, 2).map(book => (
@@ -169,7 +167,6 @@ const ImageScreen = () => {
             )}
           </View>
 
-          {/* Топ обговорень */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Типи обговорень</Text>
             <TouchableOpacity style={styles.viewAllButton} onPress={handleViewAllDiscussionTypesPress}>
@@ -177,7 +174,6 @@ const ImageScreen = () => {
             </TouchableOpacity>
           </View>
 
-          {/* Книги (для типів обговорень - можна замінити на список типів обговорень) */}
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
               <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionList', { type: 'Новинки' })}>
@@ -202,7 +198,6 @@ const ImageScreen = () => {
             </View>
           </View>
 
-          {/* Топ обговорень */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Топ обговорень</Text>
             <TouchableOpacity style={styles.viewAllButton} onPress={handleViewAllTopDiscussionsPress}>
@@ -210,7 +205,6 @@ const ImageScreen = () => {
             </TouchableOpacity>
           </View>
 
-          {/* Додаткові книги (за потреби) - можна замінити на список топ обговорень */}
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
               <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 101 })}>
@@ -225,7 +219,6 @@ const ImageScreen = () => {
           </View>
         </ScrollView>
 
-        {/* Навігаційна панель */}
         <View style={styles.navigationBar}>
           <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Home'); }}>
             <Home style={styles.navIcon}/>

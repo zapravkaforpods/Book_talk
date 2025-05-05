@@ -108,7 +108,7 @@ const ProductScreen = () => {
         {/* Картки обговорень */}
         {Array.from({ length: 15 }).map((_, index) => (
           <TouchableOpacity key={index} style={styles.discussionCard} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 123 })}>
-            <Image source={require('../assets/Home/book.png')} style={styles.bookCover} />
+            <Image source={require('../assets/Home/book_fo_product.png')} style={styles.bookCover} />
             <View style={styles.discussionInfo}>
               <Text style={styles.discussionTitle}>Доторк темряви: чи варта прочитання нова адаптація міфу про Гадеса і...</Text>
               <Text style={styles.discussionAuthor}>By Rebekah Barton</Text>
@@ -279,8 +279,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   bookCover: {
-    width: width * 0.25,
-    height: width * 0.2 * (16 / 9),
+    width: 140,
+    height: 140,
     borderRadius: width * 0.01,
     marginRight: width * 0.03,
   },

@@ -33,11 +33,11 @@ const App = () => {
           'Bitter-Bold': require('./assets/Font/static/Bitter-Bold.ttf'), 
           'Bitter-Light': require('./assets/Font/static/Bitter-Light.ttf'),
           'Bitter-Medium': require('./assets/Font/static/Bitter-Medium.ttf'),
+          'Bitter-SemiBold': require('./assets/Font/static/Bitter-SemiBold.ttf'),
 
           'Albra-Medium ': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Medium.otf'),
           'Albra-Regular': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Regular.otf'),
 
-          'Albra-Medium': require('./assets/Font/Albra Grotesk Font Family/Albra-Trial-Grotesk-Medium.otf')
         });
       } catch (error) {
         console.error('Помилка завантаження шрифтів', error);
