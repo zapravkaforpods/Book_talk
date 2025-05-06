@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MyIcon from '../assets/Main/logo.svg';
@@ -11,6 +11,9 @@ import Password from '../assets/Main/password.svg';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const [password, setPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -27,6 +30,10 @@ const LoginScreen = () => {
   const handleForgotPasswordPress = () => {
     console.log('Забули пароль?');
   };
+
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -59,7 +66,18 @@ const LoginScreen = () => {
             style={styles.inputWithLeftIcon}
             placeholder="Введіть Ваш пароль"
             placeholderTextColor="#888272"
+            secureTextEntry={!isPasswordVisible}
+            value={password}
+            onChangeText={setPassword}
           />
+           <TouchableOpacity
+                            style={styles.passwordVisibilityButton}
+                            onPress={togglePasswordVisibility}
+                        >
+                            <Text style={styles.passwordVisibilityText}>
+                                {isPasswordVisible ? 'Hide' : 'Show'}
+                            </Text>
+                        </TouchableOpacity>
         </View>     
       </View>
       <TouchableOpacity style={styles.forgotPasswordButton} onPress={handleForgotPasswordPress}>
@@ -226,6 +244,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Bitter-Bold', 
   },
+   passwordVisibilityButton: {
+        padding: 10,
+        marginLeft: 10,
+    },
+    passwordVisibilityText: {
+        color: '#888272',
+    },
 });
 
 export default LoginScreen;

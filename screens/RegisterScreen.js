@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import MyIcon from '../assets/Main/logo.svg';
 import AppleIcon from '../assets/Main/apple.svg';
@@ -12,6 +12,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
+  const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -28,6 +33,14 @@ const RegisterScreen = () => {
   const handleSocialRegister = (platform) => {
     console.log(`Реєстрація через ${platform}`);
   };
+
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    };
+
+      const toggleConfirmPasswordVisibility = () => {
+        setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
+    };
 
   return (
     <SafeAreaView style={styles.safeArea}> 
@@ -70,9 +83,21 @@ const RegisterScreen = () => {
                <Password style={styles.icon} resizeMode="contain" />
                <TextInput
                    style={[styles.inputWithLeftIcon, styles.fontBitter]}
-                   placeholder="Введіть Ваше ім'я чи пошту"
+                   placeholder="Введіть Ваш пароль"
                     placeholderTextColor="#888272"
-                 />             </View>
+                    secureTextEntry={!isPasswordVisible}
+                    value={password}
+                    onChangeText={setPassword}
+                 />
+                  <TouchableOpacity
+                            style={styles.passwordVisibilityButton}
+                            onPress={togglePasswordVisibility}
+                        >
+                            <Text style={styles.passwordVisibilityText}>
+                                {isPasswordVisible ? 'Hide' : 'Show'}
+                            </Text>
+                        </TouchableOpacity>
+             </View>
       </View>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Підтвердити Пароль</Text>
@@ -80,9 +105,21 @@ const RegisterScreen = () => {
                <Password style={styles.icon} resizeMode="contain" />
                <TextInput
                    style={[styles.inputWithLeftIcon, styles.fontBitter]}
-                   placeholder="Введіть Ваше ім'я чи пошту"
+                   placeholder="Підтвердіть Ваш пароль"
                     placeholderTextColor="#888272"
-                 />             </View>
+                    secureTextEntry={!isConfirmPasswordVisible}
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                 />
+                  <TouchableOpacity
+                            style={styles.passwordVisibilityButton}
+                            onPress={toggleConfirmPasswordVisibility}
+                        >
+                            <Text style={styles.passwordVisibilityText}>
+                                 {isConfirmPasswordVisible ? 'Hide' : 'Show'}
+                            </Text>
+                        </TouchableOpacity>
+             </View>
       </View>
       <TouchableOpacity style={styles.registerButton} onPress={handleRegisterSuccess}>
         <Text style={styles.registerButtonText}>Зареєструватися</Text>
@@ -243,6 +280,13 @@ const styles = StyleSheet.create({
   fontBitter: { // Додатковий стиль для інпутів
     fontFamily: 'Bitter',
   },
+   passwordVisibilityButton: {
+        padding: 10,
+        marginLeft: 10,
+    },
+    passwordVisibilityText: {
+        color: '#888272',
+    },
 });
 
 export default RegisterScreen;

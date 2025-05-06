@@ -17,9 +17,9 @@ const ImageScreen = () => {
   const navigation = useNavigation();
   const [searchText, setSearchText] = useState('');
   const [activeTab, setActiveTab] = useState('Home');
-  const [activeCategory, setActiveCategory] = useState('Всі'); // Початкова активна категорія - Всі
-  const [displayedBooks, setDisplayedBooks] = useState([]); // Стан для відображення книг
-  const [allBooks] = useState([ 
+  const [activeCategory, setActiveCategory] = useState('Всі');
+  const [displayedBooks, setDisplayedBooks] = useState([]);
+  const [allBooks] = useState([
     { id: 1, title: 'Із крові й попелу', author: 'Дженніфер Л. Арментраут', genre: 'Фентезі', cover: require('../assets/Home/book.png') },
     { id: 2, title: 'Розпали мене', author: 'Тагере Мафі', genre: 'Фентезі', cover: require('../assets/Home/book2.png') },
     { id: 3, title: 'Книга Детектив 1', author: 'Автор Детектив 1', genre: 'Детектив', cover: require('../assets/Home/book.png') },
@@ -36,24 +36,21 @@ const ImageScreen = () => {
 
   useEffect(() => {
     filterBooks(activeCategory);
-  }, [activeCategory, allBooks]); // Залежності: activeCategory та allBooks
+  }, [activeCategory, allBooks]);
 
   const filterBooks = (genre) => {
     const filtered = genre === 'Всі'
-      ? allBooks.slice(0, 4) // Показати перші 4 для "Всі"
-      : allBooks.filter(book => book.genre === genre).slice(0, 4); // Фільтрувати за жанром і взяти перші 4
+      ? allBooks.slice(0, 4)
+      : allBooks.filter(book => book.genre === genre).slice(0, 4);
     setDisplayedBooks(filtered);
   };
 
   const handleGenrePress = (genre) => {
     setActiveCategory(genre);
-    console.log(`Обрано жанр: ${genre}`);
-    // filterBooks(genre); // Тепер фільтрація відбувається в useEffect
-    // navigation.navigate('GenreList', { genre: genre }); // Закоментуйте або видаліть, якщо не потрібен перехід
   };
 
   const handleViewAllReadingPress = () => {
-    navigation.navigate('ReadingList', { books: displayedBooks, category: activeCategory }); // Передаємо відфільтровані книги
+    navigation.navigate('ReadingList', { books: displayedBooks, category: activeCategory });
   };
 
   const handleViewAllDiscussionTypesPress = () => {
@@ -84,7 +81,7 @@ const ImageScreen = () => {
                 </View>
               </TouchableOpacity>
               <View style={styles.icons}>
-              <TouchableOpacity style={styles.backButton} onPress={navigateToFeedback}> {/* Змінено onPress */}
+              <TouchableOpacity style={styles.backButton} onPress={navigateToFeedback}>
                   <Headphones />
                 </TouchableOpacity>
               <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Notification')}>
@@ -104,7 +101,7 @@ const ImageScreen = () => {
               value={searchText}
               onPress={() => navigation.navigate('Search')}
               onChangeText={setSearchText}
-              onSubmitEditing={() => navigation.navigate('SearchResults', { query: searchText })} // Перехід після натискання Enter
+              onSubmitEditing={() => navigation.navigate('SearchResults', { query: searchText })}
             />
             <Filter />
           </View>
@@ -144,7 +141,7 @@ const ImageScreen = () => {
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
               {displayedBooks.slice(0, 2).map(book => (
-                <TouchableOpacity key={book.id} style={styles.book} onPress={() => navigation.navigate('BookDetails', { bookId: book.id })}>
+                <TouchableOpacity key={book.id} style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                   <Image source={book.cover} style={styles.bookCover} />
                   <Text style={styles.bookTitle}>{book.title}</Text>
                   <Text style={styles.bookAuthor}>{book.author}</Text>
@@ -154,7 +151,7 @@ const ImageScreen = () => {
             {displayedBooks.length > 2 && (
               <View style={styles.bookRow}>
                 {displayedBooks.slice(2, 4).map(book => (
-                  <TouchableOpacity key={book.id} style={styles.book} onPress={() => navigation.navigate('BookDetails', { bookId: book.id })}>
+                  <TouchableOpacity key={book.id} style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                     <Image source={book.cover} style={styles.bookCover} />
                     <Text style={styles.bookTitle}>{book.title}</Text>
                     <Text style={styles.bookAuthor}>{book.author}</Text>
@@ -176,22 +173,22 @@ const ImageScreen = () => {
 
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
-              <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionList', { type: 'Новинки' })}>
+              <TouchableOpacity style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                 <Image source={require('../assets/Home/book.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Новинки</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionList', { type: 'Бестселери' })}>
+              <TouchableOpacity style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                 <Image source={require('../assets/Home/book2.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Бестселери</Text>
               </TouchableOpacity>
             </View>
 
             <View style={styles.bookRow}>
-              <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionList', { type: 'Класика' })}>
+              <TouchableOpacity style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                 <Image source={require('../assets/Home/book.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Класика</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionList', { type: 'Фентезі' })}>
+              <TouchableOpacity style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                 <Image source={require('../assets/Home/book2.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Фентезі</Text>
               </TouchableOpacity>
@@ -207,11 +204,11 @@ const ImageScreen = () => {
 
           <View style={styles.booksContainer}>
             <View style={styles.bookRow}>
-              <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 101 })}>
+              <TouchableOpacity style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                 <Image source={require('../assets/Home/book4.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Обговорення 1</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.book} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 102 })}>
+              <TouchableOpacity style={styles.book}  onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}>
                 <Image source={require('../assets/Home/book4.png')} style={styles.bookCover} />
                 <Text style={styles.bookTitle}>Обговорення 2</Text>
               </TouchableOpacity>
@@ -222,23 +219,23 @@ const ImageScreen = () => {
         <View style={styles.navigationBar}>
           <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Home'); }}>
             <Home style={styles.navIcon}/>
-            {activeTab === 'Home' && <View style={styles.activenavIcon} />}
+            {activeTab === 'Home' && <View style={[styles.activenavIcon, ]} />}
           </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Book_details'); setActiveTab('Book_details');}}> 
+          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('BooksScreen'); setActiveTab('Discover'); }}> 
             <List style={styles.navIcon} />
-            {activeTab === 'Discover' && <View style={styles.activenavIcon} />}
+            {activeTab === 'Discover' && <View style={[styles.activenavIcon,]} />}
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Create'); setActiveTab('Create'); }}>
             <Plus style={styles.navIcon} />
-            {activeTab === 'Create' && <View style={styles.activenavIcon} />}
+            {activeTab === 'Create' && <View style={[styles.activenavIcon, ]} />}
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Notifications'); setActiveTab('Notifications'); }}>
             <Save style={styles.navIcon} />
-            {activeTab === 'Notifications' && <View style={styles.activenavIcon} />}
+            {activeTab === 'Notifications' && <View style={[styles.activenavIcon, ]} />}
           </TouchableOpacity>
           <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Product'); setActiveTab('Product'); }}>
             <Profile style={styles.navIcon} />
-            {activeTab === 'Product' && <View style={styles.activenavIcon} />}
+            {activeTab === 'Product' && <View style={[styles.activenavIcon,]} />}
           </TouchableOpacity>
         </View>
       </View>
@@ -415,12 +412,10 @@ const styles = StyleSheet.create({
       height: width * 0.06,
       resizeMode: 'contain',
     },
-    activenavIcon:{
+    activenavIcon: {
       position: 'absolute',
       bottom: -15,
       borderRadius: 50,
-      left: 0,
-      right: 0,
       height: 5,
       width: 43,
       backgroundColor: '#E04D53',
@@ -428,3 +423,4 @@ const styles = StyleSheet.create({
   });
   
   export default ImageScreen;
+

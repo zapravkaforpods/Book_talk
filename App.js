@@ -13,6 +13,7 @@ import Search from './screens/search.js';
 import NotificationScreen from './screens/NoficationItem.js';
 import FeedbackScreen from './screens/Feedback.js';
 import Book_details from './screens/Book_details.js';
+import BooksScreen from './screens/BookScreen.js';
 import * as Font from 'expo-font';
 
 const Stack = createStackNavigator();
@@ -68,7 +69,7 @@ const App = () => {
           <Stack.Screen name='Notification' component={NotificationScreen} />
           <Stack.Screen name='Feedback' component={FeedbackScreen} />
           <Stack.Screen name='Book_details' component={Book_details} />
-
+          <Stack.Screen name='BooksScreen' component={BooksScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
