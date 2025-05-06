@@ -77,9 +77,9 @@ const ImageScreen = () => {
             {/* Верхня частина екрана */}
             <View style={styles.header}>
               <TouchableOpacity style={styles.userSection} onPress={() => navigation.navigate('Product')}>
-                <Image source={require('../assets/Main/my photo.jpg')} style={styles.userPhoto} />
+                <Image source={require('../assets/Main/my photo.png')} style={styles.userPhoto} />
                 <View style={styles.userInfo}>
-                  <Text style={styles.helloText}>Helo, Nata! </Text>
+                  <Text style={styles.helloText}>Helo, Nata!👋 </Text>
                   <Text style={styles.questionText}>Про що поговоримо сьогодні?</Text>
                 </View>
               </TouchableOpacity>
@@ -289,15 +289,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     helloText: {
-      fontSize: PixelRatio.roundToNearestPixel(width * 0.05),
-      fontWeight: 'light',
+      fontSize: 18,
       color: '#888272',
       fontFamily: 'Bitter-Light',
     },
     questionText: {
       fontSize: PixelRatio.roundToNearestPixel(width * 0.04),
-      color: 'black',
-      fontFamily: 'Bitter-Regular',
+      color: '#191815',
+      fontFamily: 'Albra-Bold',
     },
     icons: {
       flexDirection: 'row',
@@ -332,7 +331,7 @@ const styles = StyleSheet.create({
     },
     categoryText: {
       fontSize: 14,
-      color: '#333',
+      color: '#191815',
       fontFamily: 'Albra-Medium',
     },
     activeCategoryButton: {

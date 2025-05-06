@@ -11,6 +11,7 @@ import Like from '../assets/Profile/like.svg';
 import Repost from '../assets/Profile/repost.svg';
 import Menu from '../assets/Profile/menu.svg';
 import Vplus from '../assets/Profile/18+.svg';
+import Heart from '../assets/Home/heart.svg'; // Імпортуємо іконку серця
 
 const { width, height } = Dimensions.get('window');
 const ProductScreen = () => {
@@ -47,7 +48,7 @@ const ProductScreen = () => {
 
         {/* Інформація профілю */}
         <View style={styles.profileInfo}>
-          <Image source={require('../assets/Main/my photo.jpg')} style={styles.profileImage} />
+          <Image source={require('../assets/Main/my photo.png')} style={styles.profileImage} />
           <Text style={styles.userName}>Nata</Text>
           <View style={styles.statsContainer}>
             <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('UserDiscussions')}>
@@ -79,7 +80,7 @@ const ProductScreen = () => {
             style={[styles.categoryButton, activeCategory === 'discussions' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('discussions')}
           >
-            <Property style={styles.categoryIcon}  stroke={activeCategory === 'discussions' ? 'white' : 'black'}  strokeWidth={0.5} />
+            <Property style={styles.categoryIcon}  stroke={activeCategory === 'discussions' ? 'white' : 'black'} strokeWidth={0.5}   />
             <Text style={[styles.categoryText, activeCategory === 'discussions' && styles.activeCategoryText]}>Обговорення</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -100,15 +101,18 @@ const ProductScreen = () => {
             style={[styles.categoryButton, activeCategory === 'reposts' && styles.activeCategoryButton]}
             onPress={() => handleCategoryPress('reposts')}
           >
-            <Repost style={styles.categoryIcon}  stroke={activeCategory === 'reposts' ? 'red' : 'black'}  strokeWidth={0.5} />
+            <Repost style={styles.categoryIcon}  stroke={activeCategory === 'reposts' ? 'white' : 'black'}  strokeWidth={1} />
             <Text style={[styles.categoryText, activeCategory === 'reposts' && styles.activeCategoryText]}>Репости</Text>
           </TouchableOpacity>
         </ScrollView>
 
         {/* Картки обговорень */}
         {Array.from({ length: 15 }).map((_, index) => (
-          <TouchableOpacity key={index} style={styles.discussionCard} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 123 })}>
-            <Image source={require('../assets/Home/book_fo_product.png')} style={styles.bookCover} />
+          <View key={index} style={styles.discussionCard}>
+           
+            <TouchableOpacity style={styles.bookCoverButton} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 123 })}>
+              <Image source={require('../assets/Home/book_fo_product.png')} style={styles.bookCover} />
+            </TouchableOpacity>
             <View style={styles.discussionInfo}>
               <Text style={styles.discussionTitle}>Доторк темряви: чи варта прочитання нова адаптація міфу про Гадеса і...</Text>
               <Text style={styles.discussionAuthor}>By Rebekah Barton</Text>
@@ -119,15 +123,28 @@ const ProductScreen = () => {
                 <View style={styles.spoilerTag}>
                   <Text style={styles.spoilerText0}>Спойлер</Text>
                 </View>
-                
-              </View><Text style={styles.newTextO}>Нове</Text>
+
+              </View>
+              
+               <View style={styles.statusAndTime}>
+                                                      <View style={styles.status}>
+                                                          <Text style={styles.statusText}>Нове</Text>
+                                                      </View>
+                                                      <View style={styles.timeContainer}>
+                                                          <Text style={styles.discussionTime}>5 хв тому</Text>
+                                                      </View>
+                                              </View>
             </View>
             <View style={styles.likesContainer}>
-              <TouchableOpacity style={styles.likeButton} onPress={() => console.log('Лайкнути')}>
+              <TouchableOpacity style={styles.optionsButton} onPress={() => console.log('Опції')}>
                 <Menu width={24} height={24} fill="black" />
               </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+             <TouchableOpacity style={styles.likeButtonBottom} onPress={() => console.log('Лайкнути зверху')}>
+              <Heart style={styles.likesSvg} width={14} height={12} fill="#E04D53" />
+                <Text style={styles.likesCountBottom}>34</Text>
+            </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -278,33 +295,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
+  bookCoverButton: {
+    // Додано щоб можна було натискати на обкладинку
+  },
   bookCover: {
     width: 140,
     height: 140,
-    borderRadius: width * 0.01,
-    marginRight: width * 0.03,
+    borderRadius: 12,
+
   },
   discussionInfo: {
     flex: 1,
+    marginLeft: 16,
   },
   discussionTitle: {
-    fontSize: width * 0.04,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: '#333',
-    marginBottom: height * 0.005,
-    fontFamily: 'Bitter',
+    marginBottom: 10,
+    fontFamily: 'Bitter-Bold',
   },
   discussionAuthor: {
-    fontSize: width * 0.03,
-    color: '#777',
+    fontSize: 12,
+    color: '#888272',
     marginBottom: height * 0.01,
-    fontFamily: 'Bitter',
+    fontFamily: 'Bitter-Regular',
   },
-  tagsRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: height * 0.01,
-  },
+ 
   adultTag: {
     backgroundColor: '#FF4D4D',
     borderRadius: width * 0.05,
@@ -323,20 +339,40 @@ const styles = StyleSheet.create({
     borderRadius: width * 0.05,
     paddingVertical: height * 0.005,
     paddingHorizontal: width * 0.015,
-    marginRight: width * 0.015,
+    marginLeft: 80,
   },
   spoilerText0: {
     color: '#191815',
     fontSize: 12,
-    fontFamily: 'Bitter-Medium',
+    fontFamily: 'Albra-Medium',
   },
-  newTextO: {
-    paddingVertical: height * 0.005,
-    paddingHorizontal: width * 0.015,
+  statusAndTime: {
+    flexDirection: 'row',
+    marginTop: 10,
+    alignItems: 'center',
+    },
+    status: {
+      borderRadius: 555,
+      paddingVertical: 3,
+      paddingHorizontal: 6,
+      alignSelf: 'flex-start',
+      marginRight: 5,
+      },
+      statusText: {
+      color: '#E04D53',
+      fontSize: 12,
+      fontFamily: 'Bitter-Bold',
+      },
+      timeContainer: {
+      marginLeft: 280,
+      },
+      
+  discussionTime: {
     fontSize: 12,
-    color: '#E04D53',
-    fontFamily: 'Bitter-Bold',
-  },
+    color: '#888272',
+    fontFamily: 'Bitter-Regular',
+    marginLeft: 4,
+    },
   likesContainer: {
     marginLeft: width * 0.02,
     alignItems: 'center',
@@ -360,7 +396,7 @@ const styles = StyleSheet.create({
   tagsRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   spoilerTag: {
     flexDirection: 'row',
@@ -369,7 +405,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingVertical: 2,
     paddingHorizontal: 4,
-    marginRight: 8,
+    left: 8,
   },
   spoilerText: {
     color: '#191815',
@@ -411,6 +447,31 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontFamily: 'Bitter',
   },
-});
-
-export default ProductScreen;
+  likeButtonBottom: {
+    position: 'absolute',
+    bottom: 30,
+    left: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    borderRadius: 555,
+    width:56,
+    height: 24,
+},
+likesCountBottom: {
+  position: 'absolute',
+  color: 'white',
+  fontSize: 12,
+  marginLeft: 30,
+  fontFamily: 'Bitter-Medium',
+},
+likesSvg: {
+    position: 'absolute',
+    color: 'white',
+    fontSize: 14,
+    marginLeft: 12,
+    fontFamily: 'Bitter-Regular',
+},
+  });
+  
+  export default ProductScreen;
