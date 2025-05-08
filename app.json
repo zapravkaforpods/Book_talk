@@ -5,11 +5,11 @@
     "slug": "Book Talk",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Home/book3.svg",
+    "icon": "./assets/Main/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/Main/logo.svg",
+      "image": "./assets/Main/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,12 +18,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Main/logo.svg",
+        "foregroundImage": "./assets/Main/logo.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/Main/logo.svg"
+      "favicon": "./assets/Main/logo.png"
     }
   }
 }
