@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, Dimensions, PixelRatio } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
@@ -15,142 +15,240 @@ import Heart from '../assets/Home/heart.svg'; // Імпортуємо іконк
 
 const { width, height } = Dimensions.get('window');
 const ProductScreen = () => {
-  const navigation = useNavigation();
-  const [activeCategory, setActiveCategory] = useState(null);
+    const navigation = useNavigation();
+    const [activeCategory, setActiveCategory] = useState('discussions'); // Default category
+    const [discussions, setDiscussions] = useState([]);
 
-  const handleBackPress = () => {
-    navigation.goBack();
-  };
+    useEffect(() => {
+        // Define your data here, outside of the component function for better organization
+        const initialDiscussions = [
+            {
+                id: '1',
+                category: 'discussions',
+                title: 'Доторк темряви: чи варта прочитання нова адаптація міфу про Гадеса і...',
+                author: 'By Rebekah Barton',
+                imageUrl: require('../assets/Home/book.png'),
+                isAdult: true,
+                hasSpoiler: true,
+                isNew: true,
+                timeAgo: '5 хв тому',
+                likes: 34,
+                comments: 10,
+                reposts: 2,
+            },
+            {
+                id: '2',
+                category: 'discussions',
+                title: 'Ще одна цікава дискусія про фентезійні світи',
+                author: 'By John Doe',
+                imageUrl: require('../assets/Home/book2.png'),
+                isAdult: false,
+                hasSpoiler: false,
+                isNew: false,
+                timeAgo: '1 годину тому',
+                likes: 15,
+                comments: 5,
+                reposts: 1,
+            },
+            {
+                id: '3',
+                category: 'drafts',
+                title: 'Моя чернетка про подорожі в часі',
+                author: 'By Nata',
+                imageUrl: require('../assets/Home/book2.png'),
+                isAdult: false,
+                hasSpoiler: false,
+                isNew: false,
+                timeAgo: '2 дні тому',
+                likes: 5,
+                comments: 0,
+                reposts: 0,
+            },
+            {
+                id: '4',
+                category: 'liked',
+                title: 'Стаття, яка мені сподобалася про кіберпанк',
+                author: 'By Jane Smith',
+                imageUrl: require('../assets/Home/book5.png'),
+                isAdult: false,
+                hasSpoiler: true,
+                isNew: false,
+                timeAgo: '1 тиждень тому',
+                likes: 42,
+                comments: 8,
+                reposts: 3,
+            },
+            {
+                id: '5',
+                category: 'reposts',
+                title: 'Репост цікавого обговорення про космос',
+                author: 'By Someone Else',
+                imageUrl: require('../assets/Home/book5.png'),
+                isAdult: false,
+                hasSpoiler: false,
+                isNew: false,
+                timeAgo: '3 дні тому',
+                likes: 21,
+                comments: 7,
+                reposts: 4,
+            },
+        ];
+        setDiscussions(initialDiscussions);
+    }, []);
 
-  const handleSettingsPress = () => {
-    navigation.navigate('Settings');
-  };
 
-  const handleCategoryPress = (category) => {
-    setActiveCategory(category);
-    // Тут можна додати логіку для відображення відповідного контенту
-    console.log(`Обрано категорію: ${category}`);
-  };
+    const handleBackPress = () => {
+        navigation.goBack();
+    };
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView style={styles.container}>
-        {/* Верхня частина з кнопками навігації та заголовком */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-            <Feather name="arrow-left" size={24} color="black" />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Мій профіль</Text>
-          <TouchableOpacity style={styles.backButton}>
-            <Masege style={styles.backButtonText} />
-          </TouchableOpacity>
-        </View>
+    const handleSettingsPress = () => {
+        navigation.navigate('Settings');
+    };
 
-        {/* Інформація профілю */}
-        <View style={styles.profileInfo}>
-          <Image source={require('../assets/Main/my photo.png')} style={styles.profileImage} />
-          <Text style={styles.userName}>Nata</Text>
-          <View style={styles.statsContainer}>
-            <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('UserDiscussions')}>
-              <Text style={styles.statNumber}>5</Text>
-              <Text style={styles.statLabel}>Обговорення</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('FollowingList')}>
-              <Text style={styles.statNumber}>13</Text>
-              <Text style={styles.statLabel}>Відстежує</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('FollowersList')}>
-              <Text style={styles.statNumber}>16</Text>
-              <Text style={styles.statLabel}>Підписники</Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity style={styles.settingsButton} onPress={handleSettingsPress}>
-            <Setting style={styles.settingsIcon} />
-            <Text style={styles.settingsText}>Налаштування</Text>
-          </TouchableOpacity>
-        </View>
+    const handleCategoryPress = (category) => {
+        setActiveCategory(category);
+    };
 
-        {/* Читаю зараз */}
-        <View style={styles.readingNowSection}>
-          <Text style={styles.readingNowTitle}>Читаю зараз</Text>
-        </View>
+    const getCategoryIcon = (category) => {
+        switch (category) {
+            case 'discussions':
+                return <Property style={styles.categoryIcon} stroke={activeCategory === 'discussions' ? 'white' : 'black'} strokeWidth={0.5} />;
+            case 'drafts':
+                return <Correct style={styles.categoryIcon} stroke={activeCategory === 'drafts' ? 'white' : 'black'} strokeWidth={0.5} />;
+            case 'liked':
+                return <Like style={styles.categoryIcon} stroke={activeCategory === 'liked' ? 'white' : 'black'} strokeWidth={0.5} />;
+            case 'reposts':
+                return <Repost style={styles.categoryIcon} stroke={activeCategory === 'reposts' ? 'white' : 'black'} strokeWidth={1} />;
+            default:
+                return null;
+        }
+    };
 
-        <ScrollView horizontal style={styles.categories}>
-          <TouchableOpacity
-            style={[styles.categoryButton, activeCategory === 'discussions' && styles.activeCategoryButton]}
-            onPress={() => handleCategoryPress('discussions')}
-          >
-            <Property style={styles.categoryIcon}  stroke={activeCategory === 'discussions' ? 'white' : 'black'} strokeWidth={0.5}   />
-            <Text style={[styles.categoryText, activeCategory === 'discussions' && styles.activeCategoryText]}>Обговорення</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.categoryButton, activeCategory === 'drafts' && styles.activeCategoryButton]}
-            onPress={() => handleCategoryPress('drafts')}
-          >
-            <Correct style={styles.categoryIcon}  stroke={activeCategory === 'drafts' ? 'white' : 'black'} strokeWidth={0.5} />
-            <Text style={[styles.categoryText, activeCategory === 'drafts' && styles.activeCategoryText]}>Чернетки</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.categoryButton, activeCategory === 'liked' && styles.activeCategoryButton]}
-            onPress={() => handleCategoryPress('liked')}
-          >
-            <Like style={styles.categoryIcon}  stroke={activeCategory === 'liked' ? 'white' : 'black'}  strokeWidth={0.5} />
-            <Text style={[styles.categoryText, activeCategory === 'liked' && styles.activeCategoryText]}>Лайкнуті</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.categoryButton, activeCategory === 'reposts' && styles.activeCategoryButton]}
-            onPress={() => handleCategoryPress('reposts')}
-          >
-            <Repost style={styles.categoryIcon}  stroke={activeCategory === 'reposts' ? 'white' : 'black'}  strokeWidth={1} />
-            <Text style={[styles.categoryText, activeCategory === 'reposts' && styles.activeCategoryText]}>Репости</Text>
-          </TouchableOpacity>
-        </ScrollView>
+    const filteredDiscussions = discussions.filter(item => item.category === activeCategory);
 
-        {/* Картки обговорень */}
-        {Array.from({ length: 15 }).map((_, index) => (
-          <View key={index} style={styles.discussionCard}>
-           
-            <TouchableOpacity style={styles.bookCoverButton} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: 123 })}>
-              <Image source={require('../assets/Home/book_fo_product.png')} style={styles.bookCover} />
-            </TouchableOpacity>
-            <View style={styles.discussionInfo}>
-              <Text style={styles.discussionTitle}>Доторк темряви: чи варта прочитання нова адаптація міфу про Гадеса і...</Text>
-              <Text style={styles.discussionAuthor}>By Rebekah Barton</Text>
-              <View style={styles.tagsRow}>
-                <View >
-                  <Vplus />
+    return (
+        <SafeAreaView style={styles.safeArea}>
+            <ScrollView style={styles.container}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
+                        <Feather name="arrow-left" size={24} color="black" />
+                    </TouchableOpacity>
+                    <Text style={styles.headerTitle}>Мій профіль</Text>
+                    <TouchableOpacity style={styles.backButton}>
+                        <Masege style={styles.backButtonText} />
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.spoilerTag}>
-                  <Text style={styles.spoilerText0}>Спойлер</Text>
+
+                {/* Profile Info */}
+                <View style={styles.profileInfo}>
+                    <Image source={require('../assets/Main/my photo.png')} style={styles.profileImage} />
+                    <Text style={styles.userName}>Nata</Text>
+                    <View style={styles.statsContainer}>
+                        <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('UserDiscussions')}>
+                            <Text style={styles.statNumber}>5</Text>
+                            <Text style={styles.statLabel}>Обговорення</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('FollowingList')}>
+                            <Text style={styles.statNumber}>13</Text>
+                            <Text style={styles.statLabel}>Відстежує</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.statItem} onPress={() => navigation.navigate('FollowersList')}>
+                            <Text style={styles.statNumber}>16</Text>
+                            <Text style={styles.statLabel}>Підписники</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={styles.settingsButton} onPress={handleSettingsPress}>
+                        <Setting style={styles.settingsIcon} />
+                        <Text style={styles.settingsText}>Налаштування</Text>
+                    </TouchableOpacity>
                 </View>
 
-              </View>
-              
-               <View style={styles.statusAndTime}>
-                                                      <View style={styles.status}>
-                                                          <Text style={styles.statusText}>Нове</Text>
-                                                      </View>
-                                                      <View style={styles.timeContainer}>
-                                                          <Text style={styles.discussionTime}>5 хв тому</Text>
-                                                      </View>
-                                              </View>
-            </View>
-            <View style={styles.likesContainer}>
-              <TouchableOpacity style={styles.optionsButton} onPress={() => console.log('Опції')}>
-                <Menu width={24} height={24} fill="black" />
-              </TouchableOpacity>
-            </View>
-             <TouchableOpacity style={styles.likeButtonBottom} onPress={() => console.log('Лайкнути зверху')}>
-              <Heart style={styles.likesSvg} width={14} height={12} fill="#E04D53" />
-                <Text style={styles.likesCountBottom}>34</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-      </ScrollView>
-    </SafeAreaView>
-  );
+                {/* Reading Now Section */}
+                <View style={styles.readingNowSection}>
+                    <Text style={styles.readingNowTitle}>Читаю зараз</Text>
+                </View>
+
+                {/* Categories */}
+                <ScrollView horizontal style={styles.categories}>
+                    <TouchableOpacity
+                        style={[styles.categoryButton, activeCategory === 'discussions' && styles.activeCategoryButton]}
+                        onPress={() => handleCategoryPress('discussions')}
+                    >
+                        {getCategoryIcon('discussions')}
+                        <Text style={[styles.categoryText, activeCategory === 'discussions' && styles.activeCategoryText]}>Обговорення</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.categoryButton, activeCategory === 'drafts' && styles.activeCategoryButton]}
+                        onPress={() => handleCategoryPress('drafts')}
+                    >
+                        {getCategoryIcon('drafts')}
+                        <Text style={[styles.categoryText, activeCategory === 'drafts' && styles.activeCategoryText]}>Чернетки</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.categoryButton, activeCategory === 'liked' && styles.activeCategoryButton]}
+                        onPress={() => handleCategoryPress('liked')}
+                    >
+                        {getCategoryIcon('liked')}
+                        <Text style={[styles.categoryText, activeCategory === 'liked' && styles.activeCategoryText]}>Лайкнуті</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.categoryButton, activeCategory === 'reposts' && styles.activeCategoryButton]}
+                        onPress={() => handleCategoryPress('reposts')}
+                    >
+                        {getCategoryIcon('reposts')}
+                        <Text style={[styles.categoryText, activeCategory === 'reposts' && styles.activeCategoryText]}>Репости</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+
+                {/* Discussion Cards */}
+                {filteredDiscussions.map((item) => (
+                    <View key={item.id} style={styles.discussionCard}>
+                        <TouchableOpacity style={styles.bookCoverButton} onPress={() => navigation.navigate('DiscussionDetails', { discussionId: item.id })}>
+                            <Image source={item.imageUrl} style={styles.bookCover} />
+                        </TouchableOpacity>
+                        <View style={styles.discussionInfo}>
+                            <Text style={styles.discussionTitle}>{item.title}</Text>
+                            <Text style={styles.discussionAuthor}>{item.author}</Text>
+                            <View style={styles.tagsRow}>
+                                {item.isAdult && (
+                                    <View>
+                                        <Vplus />
+                                    </View>
+                                )}
+                                {item.hasSpoiler && (
+                                    <View style={styles.spoilerTag}>
+                                        <Text style={styles.spoilerText0}>Спойлер</Text>
+                                    </View>
+                                )}
+                            </View>
+
+                            <View style={styles.statusAndTime}>
+                                {item.isNew && (
+                                    <View style={[styles.status, { backgroundColor: '#D4EDDA' }]}>
+                                        <Text style={[styles.statusText, { color: '#155724' }]}>Нове</Text>
+                                    </View>
+                                )}
+                                <View style={styles.timeContainer}>
+                                    <Text style={styles.discussionTime}>{item.timeAgo}</Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.likesContainer}>
+                            <TouchableOpacity style={styles.optionsButton} onPress={() => console.log('Опції')}>
+                                <Menu width={24} height={24} fill="black" />
+                            </TouchableOpacity>
+                        </View>
+                        <TouchableOpacity style={styles.likeButtonBottom} onPress={() => console.log('Лайкнути зверху')}>
+                            <Heart style={styles.likesSvg} width={14} height={12} fill="#E04D53" />
+                            <Text style={styles.likesCountBottom}>{item.likes}</Text>
+                        </TouchableOpacity>
+                    </View>
+                ))}
+            </ScrollView>
+        </SafeAreaView>
+    );
 };
-
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
