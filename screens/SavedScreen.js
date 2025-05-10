@@ -13,11 +13,17 @@ import {
   PixelRatio,
 } from "react-native";
 import Home from "../assets/Panel/Home.svg";
+<<<<<<< HEAD
 import Home2 from "../assets/Panel/home2.svg";
 import List from "../assets/Panel/list.svg";
 import Plus from "../assets/Panel/plus.svg";
 import Save from "../assets/Panel/save.svg";
 import Save2 from "../assets/Panel/save2.svg";
+=======
+import List from "../assets/Panel/list.svg";
+import Plus from "../assets/Panel/plus.svg";
+import Save from "../assets/Panel/save.svg";
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
 import Profile from "../assets/Panel/profile.svg";
 import Menu from "../assets/Profile/menu.svg";
 import Heart from "../assets/Home/heart.svg";
@@ -32,8 +38,13 @@ const { width, height } = Dimensions.get("window");
 
 const SavedScreen = () => {
   const navigation = useNavigation();
+<<<<<<< HEAD
  const [activeTab, setActiveTab] = useState('SavedScreen');
  const [discussionData, setDiscussionData] = useState([
+=======
+  const [activeTab, setActiveTab] = useState("SavedScreen");
+  const [discussionData, setDiscussionData] = useState([
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
     {
       id: "d1",
       author: "Jane Smith",
@@ -94,6 +105,7 @@ const SavedScreen = () => {
       name: "Улюблене",
       coverImage: require("../assets/Home/book5.png"),
     },
+<<<<<<< HEAD
     {
       id: "c4",
       name: "Улюблене",
@@ -104,6 +116,8 @@ const SavedScreen = () => {
       name: "Улюблене",
       coverImage: require("../assets/Home/book5.png"),
     },
+=======
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
   ]);
   const [activeCategory, setActiveCategory] = useState("Всі");
   const categories = [
@@ -170,6 +184,10 @@ const SavedScreen = () => {
         <SearchIcon width={20} height={20} style={styles.searchIcon} />
         <Text style={styles.searchText}>Пошук обговорень...</Text>
       </TouchableOpacity>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
       {/* Категорії */}
       <ScrollView
         horizontal
@@ -200,6 +218,7 @@ const SavedScreen = () => {
       {/* Список обговорень */}
       <ScrollView>
         {discussionData.map((item) => (
+<<<<<<< HEAD
           <View key={item.id} style={styles.discussionItem} >
             <TouchableOpacity onPress={() => { navigation.navigate('Spell_details');  }} >
             {item.image && (
@@ -207,6 +226,12 @@ const SavedScreen = () => {
               
             )}            </TouchableOpacity>
 
+=======
+          <View key={item.id} style={styles.discussionItem}>
+            {item.image && (
+              <Image source={item.image} style={styles.discussionImage} />
+            )}
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
             <View style={styles.discussionMain}>
               <View style={styles.discussionHeader}>
                 <Text style={styles.discussionText}>{item.text}</Text>
@@ -335,6 +360,7 @@ const SavedScreen = () => {
           </View>
         </View>
       </Modal>
+<<<<<<< HEAD
      <View style={styles.navigationBar}>
               <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Image'); }}>
                 <Home2 style={styles.navIcon}/>
@@ -357,6 +383,63 @@ const SavedScreen = () => {
                 {activeTab === 'Product' && <View style={[styles.activenavIcon,]} />}
               </TouchableOpacity>
             </View>
+=======
+      {/* Кастомна навігація */}
+      <View style={styles.navigationBar}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Image");
+            setActiveTab("Home");
+          }}
+        >
+          <Home style={styles.navIcon} />
+          {activeTab === "Home" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("BooksScreen");
+            setActiveTab("Discover");
+          }}
+        >
+          <List style={styles.navIcon} />
+          {activeTab === "Discover" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Create");
+            setActiveTab("Create");
+          }}
+        >
+          <Plus style={styles.navIcon} />
+          {activeTab === "Create" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("SavedScreen");
+            setActiveTab("SavedScreen");
+          }}
+        >
+          <Save style={styles.navIcon} />
+          {activeTab === "SavedScreen" && (
+            <View style={[styles.activenavIcon]} />
+          )}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Product");
+            setActiveTab("Profile");
+          }}
+        >
+          <Profile style={styles.navIcon} />
+          {activeTab === "Profile" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+      </View>
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
     </View>
   );
 };
@@ -528,7 +611,11 @@ const styles = StyleSheet.create({
   },
   likeButtonBottom: {
     position: "absolute",
+<<<<<<< HEAD
     bottom: 45,
+=======
+    bottom: 15,
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
     left: 15,
     flexDirection: "row",
     alignItems: "center",
@@ -552,7 +639,11 @@ const styles = StyleSheet.create({
     fontFamily: "Bitter-Regular",
   },
   centeredView: {
+<<<<<<< HEAD
     flex: 1,
+=======
+    flexflex: 1,
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -648,6 +739,7 @@ const styles = StyleSheet.create({
   collectionSaveButton: {
     padding: 10,
   },
+<<<<<<< HEAD
       navigationBar: {
       flexDirection: 'row',
       justifyContent: 'space-around',
@@ -679,6 +771,39 @@ const styles = StyleSheet.create({
       width: 43,
       backgroundColor: '#E04D53',
     },
+=======
+  navigationBar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "#000",
+    height: height * 0.1,
+    width: width * 0.9,
+    borderRadius: width * 0.1,
+    position: "absolute",
+    bottom: height * 0.02,
+    left: width * 0.05,
+  },
+  navItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: width * 0.1,
+    height: width * 0.1,
+  },
+  navIcon: {
+    width: width * 0.06,
+    height: width * 0.06,
+    resizeMode: "contain",
+  },
+  activenavIcon: {
+    position: "absolute",
+    bottom: -15,
+    borderRadius: 50,
+    height: 5,
+    width: 43,
+    backgroundColor: "#E04D53",
+  },
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
 });
 
 export default SavedScreen;

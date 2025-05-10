@@ -959,7 +959,11 @@ const styles = StyleSheet.create({
   },
   likeButtonBottom: {
     position: "absolute",
+<<<<<<< HEAD
     bottom: 45,
+=======
+    bottom: 30,
+>>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
     left: 25,
     flexDirection: "row",
     alignItems: "center",
