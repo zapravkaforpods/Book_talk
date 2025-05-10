@@ -35,9 +35,8 @@ const { width, height } = Dimensions.get("window");
 const SavedScreen = () => {
   const navigation = useNavigation();
 
- const [activeTab, setActiveTab] = useState('SavedScreen');
- const [discussionData, setDiscussionData] = useState([
-
+  const [activeTab, setActiveTab] = useState("SavedScreen");
+  const [discussionData, setDiscussionData] = useState([
     {
       id: "d1",
       author: "Jane Smith",
@@ -109,7 +108,6 @@ const SavedScreen = () => {
       name: "Улюблене",
       coverImage: require("../assets/Home/book5.png"),
     },
-
   ]);
   const [activeCategory, setActiveCategory] = useState("Всі");
   const categories = [
@@ -207,14 +205,16 @@ const SavedScreen = () => {
       {/* Список обговорень */}
       <ScrollView>
         {discussionData.map((item) => (
-
-          <View key={item.id} style={styles.discussionItem} >
-            <TouchableOpacity onPress={() => { navigation.navigate('Spell_details');  }} >
-            {item.image && (
-              <Image source={item.image} style={styles.discussionImage} />
-              
-            )}            </TouchableOpacity>
-
+          <View key={item.id} style={styles.discussionItem}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Spell_details");
+              }}
+            >
+              {item.image && (
+                <Image source={item.image} style={styles.discussionImage} />
+              )}{" "}
+            </TouchableOpacity>
 
             <View style={styles.discussionMain}>
               <View style={styles.discussionHeader}>
@@ -345,29 +345,62 @@ const SavedScreen = () => {
         </View>
       </Modal>
 
-     <View style={styles.navigationBar}>
-              <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Image'); }}>
-                <Home2 style={styles.navIcon}/>
-                {activeTab === 'Image' && <View style={[styles.activenavIcon, ]} />}
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('CollectionMain'); setActiveTab('CollectionMain'); }}> 
-                <List style={styles.navIcon} />
-                {activeTab === 'CollectionMain' && <View style={[styles.activenavIcon,]} />}
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Create'); setActiveTab('Create'); }}>
-                <Plus style={styles.navIcon} />
-                {activeTab === 'Create' && <View style={[styles.activenavIcon, ]} />}
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('SavedScreen'); setActiveTab('SavedScreen'); }}>
-                <Save2 style={styles.navIcon} />
-                {activeTab === 'SavedScreen' && <View style={[styles.activenavIcon, ]} />}
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Product'); setActiveTab('Product'); }}>
-                <Profile style={styles.navIcon} />
-                {activeTab === 'Product' && <View style={[styles.activenavIcon,]} />}
-              </TouchableOpacity>
-            </View>
-
+      <View style={styles.navigationBar}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Image");
+            setActiveTab("Image");
+          }}
+        >
+          <Home2 style={styles.navIcon} />
+          {activeTab === "Image" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("CollectionMain");
+            setActiveTab("CollectionMain");
+          }}
+        >
+          <List style={styles.navIcon} />
+          {activeTab === "CollectionMain" && (
+            <View style={[styles.activenavIcon]} />
+          )}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Create");
+            setActiveTab("Create");
+          }}
+        >
+          <Plus style={styles.navIcon} />
+          {activeTab === "Create" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("SavedScreen");
+            setActiveTab("SavedScreen");
+          }}
+        >
+          <Save2 style={styles.navIcon} />
+          {activeTab === "SavedScreen" && (
+            <View style={[styles.activenavIcon]} />
+          )}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Product");
+            setActiveTab("Product");
+          }}
+        >
+          <Profile style={styles.navIcon} />
+          {activeTab === "Product" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -386,7 +419,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.04,
     height: height * 0.06,
     marginHorizontal: 16,
-    marginBottom: 10,
   },
   searchIcon: {
     marginRight: width * 0.02,
@@ -436,10 +468,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1EFE4",
     borderRadius: 10,
     padding: 15,
-    marginBottom: 15,
     flexDirection: "row",
-    alignItems: "flex-start",
-    marginHorizontal: 16,
+    alignItems: "center",
     // shadowColor: "#000",
     // shadowOffset: { width: 0, height: 2 },
     // shadowOpacity: 0.1,
@@ -539,8 +569,8 @@ const styles = StyleSheet.create({
   },
   likeButtonBottom: {
     position: "absolute",
-    bottom: 45,
-    left: 15,
+    bottom: 30,
+    left: 20,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "black",
@@ -660,37 +690,37 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-      navigationBar: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      backgroundColor: '#000',
-      height: height * 0.1,
-      width: width * 0.9,
-      borderRadius: width * 0.1,
-      position: 'absolute',
-      bottom: height * 0.02,
-      left: width * 0.05,
-    },
-    navItem: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: width * 0.1,
-      height: width * 0.1,
-    },
-    navIcon: {
-      width: width * 0.06,
-      height: width * 0.06,
-      resizeMode: 'contain',
-    },
-    activenavIcon: {
-      position: 'absolute',
-      bottom: -15,
-      borderRadius: 50,
-      height: 5,
-      width: 43,
-      backgroundColor: '#E04D53',
-    },
+  navigationBar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "#000",
+    height: height * 0.1,
+    width: width * 0.9,
+    borderRadius: width * 0.1,
+    position: "absolute",
+    bottom: height * 0.04,
+    left: width * 0.05,
+  },
+  navItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: width * 0.1,
+    height: width * 0.1,
+  },
+  navIcon: {
+    width: width * 0.06,
+    height: width * 0.06,
+    resizeMode: "contain",
+  },
+  activenavIcon: {
+    position: "absolute",
+    bottom: -15,
+    borderRadius: 50,
+    height: 5,
+    width: 43,
+    backgroundColor: "#E04D53",
+  },
 });
 
 export default SavedScreen;

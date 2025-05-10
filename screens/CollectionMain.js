@@ -30,6 +30,7 @@ const CollectionMain = () => {
   const [searchText, setSearchText] = useState("");
   const [activeTab, setActiveTab] = useState("Discover");
   const [collectionsData, setCollectionsData] = useState([]);
+  const [showEmptyCol, setShowEmptyCol] = useState(false); // Додано новий стан
 
   useEffect(() => {
     // Отримуємо назву нової колекції, якщо вона передана
@@ -40,7 +41,11 @@ const CollectionMain = () => {
         title: newTitle,
         books: [], // Поки що порожня колекція
       };
-      setCollectionsData((prevCollections) => [newCollection, ...prevCollections]);
+      setCollectionsData((prevCollections) => [
+        newCollection,
+        ...prevCollections,
+      ]);
+      setShowEmptyCol(true); // Показуємо EmptyCol при створенні нової колекції
     } else {
       // Початкові колекції
       const initialBookData = [
@@ -105,6 +110,7 @@ const CollectionMain = () => {
         return chunkedArr;
       };
       setCollectionsData(chunkArray(initialBookData, 4));
+      setShowEmptyCol(false); // При початкових колекціях EmptyCol не показуємо
     }
   }, [route.params?.newCollectionTitle]);
 
@@ -113,129 +119,130 @@ const CollectionMain = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <ScrollView style={styles.content}>
-          {/* Заголовок та кнопка "+" */}
-          <View style={styles.header}>
-            <Text style={styles.title}>Книги</Text>
-            <TouchableOpacity
-              style={styles.plusButton}
-              onPress={() => navigation.navigate("Creatcolection")}
-            >
-              <Plus style={styles.plusIcon} />
-            </TouchableOpacity>
-          </View>
-
-          {/* Поле пошуку */}
-          <View style={styles.searchBar}>
-            <TouchableOpacity onPress={() => console.log("Пошук")}>
-              <Search />
-            </TouchableOpacity>
-            <TextInput
-              style={styles.searchText}
-              placeholder="Пошук"
-              value={searchText}
-              onPress={() => navigation.navigate("Search")}
-              onChangeText={setSearchText}
-              onSubmitEditing={() =>
-                navigation.navigate("SearchResults", { query: searchText })
-              }
-            />
-          </View>
-
-          {/* Відображення колекцій */}
-          <View style={styles.booksContainer}>
-            {collectionsData.map((collection) => (
-              <TouchableOpacity
-                key={collection.id}
-                style={styles.collectionContainer}
-                onPress={() => handleCollectionPress(collection)}
-              >
-                <EmptyCol />
-                <Text style={styles.collectionTitle}>{collection.title}</Text>
-                <View style={styles.bookRow}>
-                  {collection.books.map((book, index) => (
-                    <View key={book.id} style={styles.book}>
-                      {index < 2 && (
-                        <Image source={book.cover} style={styles.bookCover} />
-                      )}
-                    </View>
-                  ))}
-                </View>
-                <View style={styles.bookRow}>
-                  {collection.books.slice(2).map((book, index) => (
-                    <View key={book.id} style={styles.book}>
-                      {index < 2 && (
-                        <Image source={book.cover} style={styles.bookCover} />
-                      )}
-                    </View>
-                  ))}
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </ScrollView>
-
-        {/* Кастомна навігація */}
-        <View style={styles.navigationBar}>
+    // <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
+      <ScrollView style={styles.content}>
+        {/* Заголовок та кнопка "+" */}
+        <View style={styles.header}>
+          <Text style={styles.title}>Книги</Text>
           <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("Image");
-              setActiveTab("Home");
-            }}
+            style={styles.plusButton}
+            onPress={() => navigation.navigate("Creatcolection")}
           >
-            <Home2  style={styles.navIcon} />
-            {activeTab === "Home" && <View style={[styles.activenavIcon]} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("BooksScreen");
-              setActiveTab("Discover");
-            }}
-          >
-            <List2  style={styles.navIcon} />
-            {activeTab === "Discover" && (
-              <View style={[styles.activenavIcon]} />
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("Create");
-              setActiveTab("Create");
-            }}
-          >
-            <Plus style={styles.navIcon} />
-            {activeTab === "Create" && <View style={[styles.activenavIcon]} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("SavedScreen");
-              setActiveTab("SavedScreen");
-            }}
-          >
-            <Save style={styles.navIcon} />
-            {activeTab === "" && (
-              <View style={[styles.activenavIcon]} />
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("Product");
-              setActiveTab("Profile");
-            }}
-          >
-            <Profile style={styles.navIcon} />
-            {activeTab === "Profile" && <View style={[styles.activenavIcon]} />}
+            <Plus style={styles.plusIcon} />
           </TouchableOpacity>
         </View>
+
+        {/* Поле пошуку */}
+        <View style={styles.searchBar}>
+          <TouchableOpacity onPress={() => console.log("Пошук")}>
+            <Search />
+          </TouchableOpacity>
+          <TextInput
+            style={styles.searchText}
+            placeholder="Пошук"
+            value={searchText}
+            onPress={() => navigation.navigate("Search")}
+            onChangeText={setSearchText}
+            onSubmitEditing={() =>
+              navigation.navigate("SearchResults", { query: searchText })
+            }
+          />
+        </View>
+
+        {/* Відображення колекцій */}
+        <View style={styles.booksContainer}>
+          {collectionsData.map((collection) => (
+            <TouchableOpacity
+              key={collection.id}
+              style={styles.collectionContainer}
+            >
+              {showEmptyCol ? (
+                <EmptyCol
+                  onPress={() => {
+                    navigation.navigate("ViewCollection");
+                  }}
+                />
+              ) : null}
+              <Text style={styles.collectionTitle}>{collection.title}</Text>
+              <View style={styles.bookRow}>
+                {collection.books.map((book, index) => (
+                  <View key={book.id} style={styles.book}>
+                    {index < 2 && (
+                      <Image source={book.cover} style={styles.bookCover} />
+                    )}
+                  </View>
+                ))}
+              </View>
+              <View style={styles.bookRow}>
+                {collection.books.slice(2).map((book, index) => (
+                  <View key={book.id} style={styles.book}>
+                    {index < 2 && (
+                      <Image source={book.cover} style={styles.bookCover} />
+                    )}
+                  </View>
+                ))}
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+
+      {/* Кастомна навігація */}
+      <View style={styles.navigationBar}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Image");
+            setActiveTab("Home");
+          }}
+        >
+          <Home2 style={styles.navIcon} />
+          {activeTab === "Home" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("BooksScreen");
+            setActiveTab("Discover");
+          }}
+        >
+          <List2 style={styles.navIcon} />
+          {activeTab === "Discover" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Create");
+            setActiveTab("Create");
+          }}
+        >
+          <Plus style={styles.navIcon} />
+          {activeTab === "Create" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("SavedScreen");
+            setActiveTab("SavedScreen");
+          }}
+        >
+          <Save style={styles.navIcon} />
+          {activeTab === "" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => {
+            navigation.navigate("Product");
+            setActiveTab("Profile");
+          }}
+        >
+          <Profile style={styles.navIcon} />
+          {activeTab === "Profile" && <View style={[styles.activenavIcon]} />}
+        </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
+    // </SafeAreaView>
   );
 };
 
@@ -247,6 +254,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F1EFE4",
+    marginTop: 60,
   },
   content: {
     flex: 1,
@@ -314,7 +322,7 @@ const styles = StyleSheet.create({
   },
   book: {
     alignItems: "center",
-    width:"50%", // Приблизно половина доступного місця в рядку
+    width: "50%", // Приблизно половина доступного місця в рядку
   },
   bookCover: {
     width: "90%",
@@ -344,7 +352,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     borderRadius: width * 0.1,
     position: "absolute",
-    bottom: height * 0.02,
+    bottom: height * 0.04,
     left: width * 0.05,
   },
   navItem: {

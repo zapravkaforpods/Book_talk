@@ -8,6 +8,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import ImageScreen from "./screens/Home_in";
+import EditProfileScreen from "./screens/EditProfileScreen.js";
 import ProductScreen from "./screens/ProductScreen";
 import Search from "./screens/search.js";
 import NotificationScreen from "./screens/NoficationItem.js";
@@ -18,6 +19,7 @@ import CollectionMain from "./screens/CollectionMain.js";
 import CollectionScreen from "./screens/CollectionScreen.js";
 import SavedScreen from "./screens/SavedScreen.js";
 import Creatcolection from "./screens/Creatcolection.js";
+import ViewCollection from "./screens/Creatcolection.js";
 import * as Font from "expo-font";
 
 const Stack = createStackNavigator();
@@ -79,12 +81,16 @@ const App = () => {
           <Stack.Screen name="Notification" component={NotificationScreen} />
           <Stack.Screen name="Feedback" component={FeedbackScreen} />
           <Stack.Screen name="Book_details" component={Book_details} />
-           <Stack.Screen name="Spell_details" component={Spell_details} />
+          <Stack.Screen name="Spell_details" component={Spell_details} />
           <Stack.Screen name="CollectionMain" component={CollectionMain} />
           <Stack.Screen name="Collection" component={CollectionScreen} />
+          <Stack.Screen
+            name="EditProfileScreen"
+            component={EditProfileScreen}
+          />
           <Stack.Screen name="SavedScreen" component={SavedScreen} />
-
-          <Stack.Screen name="Creatcolection" component={Creatcolection}  />
+          <Stack.Screen name="ViewCollection" component={ViewCollection} />
+          <Stack.Screen name="Creatcolection" component={Creatcolection} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

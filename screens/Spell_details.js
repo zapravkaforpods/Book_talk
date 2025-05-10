@@ -303,68 +303,7 @@ const Spell_details = () => {
           ))}
         </View>
       );
-    } else if (activeCategory === "Обговорення") {
-      return (
-        <View style={styles.discussionListContainer}>
-          <Text style={styles.discussionTitle}>Обговорення</Text>
-          {discussionData.map((item) => (
-            <View key={item.id} style={styles.discussionItem}>
-              {item.image && (
-                <Image source={item.image} style={styles.discussionImage} />
-              )}
-              <View style={styles.discussionMain}>
-                <View style={styles.discussionHeader}>
-                  <Text style={styles.discussionText}>{item.text}</Text>
-                  <TouchableOpacity
-                    style={styles.threeDotsButton}
-                    onPress={() => openThreeDotsMenu(item.id)}
-                  >
-                    <Menu width={24} height={24} fill="black" />
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.discussionAuthor}>{item.author}</Text>
-                <View style={styles.metaContainer}>
-                  <View style={styles.metaLeft}>
-                    {item.isSpoiler && (
-                      <View style={styles.spoilerBadge}>
-                        <Text style={styles.spoilerText}>Спойлер</Text>
-                      </View>
-                    )}
-                    {item.genre && (
-                      <View style={styles.genreBadge}>
-                        <Text style={styles.genreText}>{item.genre}</Text>
-                      </View>
-                    )}
-                  </View>
-                  <View style={styles.statusAndTime}>
-                    {item.status && (
-                      <View style={styles.status}>
-                        <Text style={styles.statusText}>{item.status}</Text>
-                      </View>
-                    )}
-                    {item.time && (
-                      <View style={styles.timeContainer}>
-                        <Text style={styles.discussionTime}>{item.time}</Text>
-                      </View>
-                    )}
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity style={styles.likeButtonBottom}>
-                <Heart
-                  style={styles.likesSvg}
-                  width={14}
-                  height={12}
-                  fill="white"
-                />
-                <Text style={styles.likesCountBottom}>{item.likes}</Text>
-              </TouchableOpacity>
-            </View>
-          ))}
-        </View>
-      );
     }
-    return null;
   };
 
   return (
@@ -391,11 +330,33 @@ const Spell_details = () => {
               </TouchableOpacity>
             </View>
           </View>
-          
-         
         </ImageBackground>
       </View>
-
+      <View>
+        <View style={styles.avaterCont}>
+          <Image
+            source={require("../assets/Main/my photo.png")}
+            style={styles.profileImage}
+          />
+          <Text style={styles.userName}>Nata</Text>
+          <TouchableOpacity style={styles.likeButtonBottom}>
+            <Heart
+              style={styles.likesSvg}
+              width={21}
+              height={19}
+              fill="white"
+            />
+            <Text style={styles.likesCountBottom}>178</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.nazva}>
+          "Доторкнутись до небес" Ірина Кацімон - відгук на дебютну книгу
+          авторки...
+        </Text>
+        <View style={styles.timeContainer}>
+          <Text style={styles.discussionTime}>1 год тому</Text>
+        </View>
+      </View>
       <ScrollView style={styles.scrollableContent}>
         <View style={styles.categoriesContainer}>
           <TouchableOpacity
@@ -436,7 +397,6 @@ const Spell_details = () => {
               Коментарі
             </Text>
           </TouchableOpacity>
-         
         </View>
 
         {renderCategoryContent()}
@@ -896,21 +856,19 @@ const styles = StyleSheet.create({
     top: -20,
   },
   likeButtonBottom: {
-    position: "absolute",
-    bottom: 30,
-    left: 25,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "black",
     borderRadius: 555,
     width: 56,
     height: 24,
+    left: 200,
+    top: 10,
   },
   likesCountBottom: {
     position: "absolute",
-    color: "white",
-    fontSize: 12,
-    marginLeft: 30,
+    color: "black",
+    fontSize: 16,
+    marginLeft: 35,
     fontFamily: "Bitter-Medium",
   },
   likesSvg: {
@@ -1117,6 +1075,32 @@ const styles = StyleSheet.create({
   },
   collectionSaveButton: {
     padding: 8,
+  },
+  nazva: {
+    alignSelf: "center",
+    fontSize: 24,
+    fontFamily: "Bitter-Medium",
+  },
+  timeContainer: {
+    alignItems: "flex-start",
+    marginTop: 5,
+    marginLeft: 15,
+  },
+  discussionTime: {
+    fontSize: 12,
+    color: "#888272",
+    fontFamily: "Bitter-Regular",
+    marginLeft: 4,
+  },
+  avaterCont: {
+    flexDirection: "row",
+    marginBottom: 20,
+    marginLeft: 15,
+  },
+  userName: {
+    fontSize: 13,
+    fontFamily: "Bitter-Medium",
+    margin: 15,
   },
 });
 
