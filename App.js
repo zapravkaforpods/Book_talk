@@ -15,6 +15,7 @@ import FeedbackScreen from "./screens/Feedback.js";
 import Book_details from "./screens/Book_details.js";
 import BooksScreen from "./screens/BookScreen.js";
 import CollectionScreen from "./screens/CollectionScreen.js";
+import SavedScreen from "./screens/SavedScreen.js";
 import * as Font from "expo-font";
 
 const Stack = createStackNavigator();
@@ -57,7 +58,12 @@ const App = () => {
         barStyle="light-content"
       />
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            animationEnabled: false, // Вимикаємо анімацію за замовчуванням для всіх екранів
+          }}
+        >
           {isLoading ? (
             <Stack.Screen name="Splash" component={SplashScreen} />
           ) : null}
@@ -73,6 +79,7 @@ const App = () => {
           <Stack.Screen name="Book_details" component={Book_details} />
           <Stack.Screen name="BooksScreen" component={BooksScreen} />
           <Stack.Screen name="Collection" component={CollectionScreen} />
+          <Stack.Screen name="SavedScreen" component={SavedScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
