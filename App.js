@@ -17,11 +17,7 @@ import Spell_details from "./screens/Spell_details.js";
 import CollectionMain from "./screens/CollectionMain.js";
 import CollectionScreen from "./screens/CollectionScreen.js";
 import SavedScreen from "./screens/SavedScreen.js";
-<<<<<<< HEAD
-import Creatcolection from "./screens/Creatcolection.js"
-
-=======
->>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
+import Creatcolection from "./screens/Creatcolection.js";
 import * as Font from "expo-font";
 
 const Stack = createStackNavigator();
@@ -87,10 +83,8 @@ const App = () => {
           <Stack.Screen name="CollectionMain" component={CollectionMain} />
           <Stack.Screen name="Collection" component={CollectionScreen} />
           <Stack.Screen name="SavedScreen" component={SavedScreen} />
-<<<<<<< HEAD
+
           <Stack.Screen name="Creatcolection" component={Creatcolection}  />
-=======
->>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
         </Stack.Navigator>
       </NavigationContainer>
     </View>

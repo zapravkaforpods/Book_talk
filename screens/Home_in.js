@@ -25,17 +25,10 @@ import Search from "../assets/Home/search.svg";
 
 const { width, height } = Dimensions.get("window");
 const ImageScreen = () => {
-<<<<<<< HEAD
   const navigation = useNavigation({ animationEnabled: false });
   const [searchText, setSearchText] = useState('');
   const [activeTab, setActiveTab] = useState('Image');
   const [activeCategory, setActiveCategory] = useState('Всі');
-=======
-  const navigation = useNavigation();
-  const [searchText, setSearchText] = useState("");
-  const [activeTab, setActiveTab] = useState("Home");
-  const [activeCategory, setActiveCategory] = useState("Всі");
->>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
   const [displayedBooks, setDisplayedBooks] = useState([]);
   const [allBooks] = useState([
     {
@@ -403,7 +396,7 @@ const ImageScreen = () => {
         </ScrollView>
 
         <View style={styles.navigationBar}>
-<<<<<<< HEAD
+
                      <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Image'); }}>
                        <Home style={styles.navIcon}/>
                        {activeTab === 'Image' && <View style={[styles.activenavIcon, ]} />}
@@ -428,66 +421,7 @@ const ImageScreen = () => {
            </View>
       </SafeAreaView>
     );
-=======
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("Image");
-              setActiveTab("Home");
-            }}
-          >
-            <Home style={styles.navIcon} />
-            {activeTab === "Home" && <View style={[styles.activenavIcon]} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("BooksScreen");
-              setActiveTab("Discover");
-            }}
-          >
-            <List style={styles.navIcon} />
-            {activeTab === "Discover" && (
-              <View style={[styles.activenavIcon]} />
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("Create");
-              setActiveTab("Create");
-            }}
-          >
-            <Plus style={styles.navIcon} />
-            {activeTab === "Create" && <View style={[styles.activenavIcon]} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("SavedScreen");
-              setActiveTab("SavedScreen");
-            }}
-          >
-            <Save style={styles.navIcon} />
-            {activeTab === "Notifications" && (
-              <View style={[styles.activenavIcon]} />
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => {
-              navigation.navigate("Product");
-              setActiveTab("Product");
-            }}
-          >
-            <Profile style={styles.navIcon} />
-            {activeTab === "Product" && <View style={[styles.activenavIcon]} />}
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
->>>>>>> 96a3a01338129a5f5e4693d7375d4787a7c3330d
+
 };
 const styles = StyleSheet.create({
   safeArea: {
