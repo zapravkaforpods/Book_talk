@@ -14,9 +14,9 @@ import Search  from '../assets/Home/search.svg';
 
 const { width, height } = Dimensions.get('window');
 const ImageScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation({ animationEnabled: false });
   const [searchText, setSearchText] = useState('');
-  const [activeTab, setActiveTab] = useState('Home');
+  const [activeTab, setActiveTab] = useState('Image');
   const [activeCategory, setActiveCategory] = useState('Всі');
   const [displayedBooks, setDisplayedBooks] = useState([]);
   const [allBooks] = useState([
@@ -217,28 +217,28 @@ const ImageScreen = () => {
         </ScrollView>
 
         <View style={styles.navigationBar}>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Home'); }}>
-            <Home style={styles.navIcon}/>
-            {activeTab === 'Home' && <View style={[styles.activenavIcon, ]} />}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('BooksScreen'); setActiveTab('Discover'); }}> 
-            <List style={styles.navIcon} />
-            {activeTab === 'Discover' && <View style={[styles.activenavIcon,]} />}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Create'); setActiveTab('Create'); }}>
-            <Plus style={styles.navIcon} />
-            {activeTab === 'Create' && <View style={[styles.activenavIcon, ]} />}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Notifications'); setActiveTab('Notifications'); }}>
-            <Save style={styles.navIcon} />
-            {activeTab === 'Notifications' && <View style={[styles.activenavIcon, ]} />}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Product'); setActiveTab('Product'); }}>
-            <Profile style={styles.navIcon} />
-            {activeTab === 'Product' && <View style={[styles.activenavIcon,]} />}
-          </TouchableOpacity>
-        </View>
-      </View>
+                     <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Image'); setActiveTab('Image'); }}>
+                       <Home style={styles.navIcon}/>
+                       {activeTab === 'Image' && <View style={[styles.activenavIcon, ]} />}
+                     </TouchableOpacity>
+                     <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('CollectionMain'); setActiveTab('CollectionMain'); }}> 
+                       <List style={styles.navIcon} />
+                       {activeTab === 'CollectionMain' && <View style={[styles.activenavIcon,]} />}
+                     </TouchableOpacity>
+                     <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Create'); setActiveTab('Create'); }}>
+                       <Plus style={styles.navIcon} />
+                       {activeTab === 'Create' && <View style={[styles.activenavIcon, ]} />}
+                     </TouchableOpacity>
+                     <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('SavedScreen'); setActiveTab('SavedScreen'); }}>
+                       <Save style={styles.navIcon} />
+                       {activeTab === 'SavedScreen' && <View style={[styles.activenavIcon, ]} />}
+                     </TouchableOpacity>
+                     <TouchableOpacity style={styles.navItem} onPress={() => { navigation.navigate('Product'); setActiveTab('Product'); }}>
+                       <Profile style={styles.navIcon} />
+                       {activeTab === 'Product' && <View style={[styles.activenavIcon,]} />}
+                     </TouchableOpacity>
+                   </View>
+           </View>
       </SafeAreaView>
     );
 };

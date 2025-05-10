@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -6,62 +6,95 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; // Або будь-які інші іконки, які вам потрібні
+import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Pen from '../assets/Main/pen.svg';
+
 
 const CollectionScreen = () => {
   const navigation = useNavigation();
+  const [showDeleteButton, setShowDeleteButton] = useState(false);
+
   const handleBackPress = () => {
     navigation.goBack();
   };
+
+  const handleDeleteCollection = () => {
+    Alert.alert(
+      "Видалити колекцію",
+      "Ви впевнені, що хочете видалити цю колекцію?",
+      [
+        { text: "Скасувати", style: "cancel" },
+        {
+          text: "Видалити",
+          onPress: () => {
+            navigation.goBack(); // Перехід на попередній екран
+          },
+        },
+      ]
+    );
+  };
+
   const books = [
     {
       title: "Хірург",
       author: "Тесс Геррітсен",
-      // imageSource: require("./assets/surgeon_cover.jpg"), // Замініть на фактичний шлях до зображення
+      imageSource: require("../assets/Home/book.png"),
     },
     {
       title: "Із крові й попелу",
       author: "Дженніфер Л. Арментраут",
-      // imageSource: require("./assets/blood_and_ash_cover.jpg"), // Замініть на фактичний шлях до зображення
+      imageSource: require("../assets/Home/book2.png"),
     },
     {
       title: "Відблиск",
       author: "Рейвен Кеннеді",
-      // imageSource: require("./assets/reflection_cover.jpg"), // Замініть на фактичний шлях до зображення
+      imageSource: require("../assets/Home/book_s.png"),
     },
     {
       title: "Темніший колір магії",
       author: "В. Е. Шваб",
-      // imageSource: require("./assets/darker_shade_of_magic_cover.jpg"), // Замініть на фактичний шлях до зображення
+      imageSource: require("../assets/Home/book2.png"),
     },
-    // Додайте більше книг за потреби
   ];
+
+  const handleEllipsisPress = () => {
+    setShowDeleteButton(prev => !prev);
+  };
 
   return (
     <View style={styles.container}>
       {/* Верхня панель */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Ionicons name="arrow-back" size={24} color="black" />
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={handleBackPress}>
+          <Feather name="arrow-left" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Колекція 1</Text>
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.headerButton}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={handleEllipsisPress}
+          >
             <Ionicons name="ellipsis-horizontal" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.headerButton}>
-            <Ionicons name="pencil-outline" size={24} color="black" />
+            <Pen />
           </TouchableOpacity>
         </View>
       </View>
 
       {/* Кнопка видалення колекції */}
-      <TouchableOpacity style={styles.deleteButton}>
-        <Ionicons name="trash-outline" size={18} color="#FF6347" />
-        <Text style={styles.deleteButtonText}>Видалити колекцію</Text>
-      </TouchableOpacity>
+      {showDeleteButton && (
+        <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteCollection}>
+          <Ionicons name="trash-outline" size={18} color="#FF6347" />
+          <Text style={styles.deleteButtonText}>Видалити колекцію</Text>
+        </TouchableOpacity>
+      )}
 
       {/* Список книг */}
       <ScrollView contentContainerStyle={styles.booksContainer}>
@@ -84,32 +117,48 @@ const CollectionScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 50, // Врахуйте відступ для статус-бару
+    backgroundColor: "#F1EFE4",
+    paddingTop: 50,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    marginBottom: 16,
+    marginBottom: 20,
+  },
+  backButton: {
+    width: 48,
+    height: 48,
+    backgroundColor: "#E0DAC2",
+    borderRadius: 555,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 16,
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "Bitter-Medium",
   },
   headerButton: {
     marginLeft: 16,
+    backgroundColor: "#E0DAC2",
+    borderRadius: 555,
+    width: 48,
+    height: 48,
+    justifyContent: "center",
+    alignItems: "center",
   },
   deleteButton: {
     flexDirection: "row",
-    alignItems: "center",
+    alignSelf: "flex-end",
     paddingHorizontal: 16,
     paddingVertical: 10,
     backgroundColor: "#f8f8f8",
-    borderRadius: 5,
+    borderRadius: 10,
     marginHorizontal: 16,
     marginBottom: 16,
+    width: "45%",
   },
   deleteButtonText: {
     color: "#FF6347",
@@ -118,16 +167,16 @@ const styles = StyleSheet.create({
   booksContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    paddingHorizontal: 8,
+    justifyContent: 'center', // Додано для центрування
+    paddingVertical: 15,
   },
   bookItem: {
-    width: "50%",
-    paddingHorizontal: 8,
+    paddingHorizontal: 15,
     marginBottom: 16,
   },
   bookCover: {
-    width: "100%",
-    height: 200, // Регулюйте висоту за потреби
+    width: 170,
+    height: 240,
     borderRadius: 8,
   },
   bookTitle: {

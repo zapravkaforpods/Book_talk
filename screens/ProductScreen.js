@@ -384,12 +384,11 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   contentSection: {
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
   },
   discussionCard: {
     backgroundColor: '#F1EFE4',
     padding: width * 0.03,
-    marginBottom: height * 0.02,
     flexDirection: 'row',
     alignItems: 'flex-start',
   },

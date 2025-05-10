@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Book Talk",
@@ -24,6 +23,9 @@
     },
     "web": {
       "favicon": "./assets/Main/logo.png"
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
